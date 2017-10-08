@@ -1,0 +1,29 @@
+{
+  "name": "icon-patterns",
+  "version": "0.0.9",
+  "description": "Animated icon-pattern background for webpages",
+  "main": "src/main.js",
+  "jsnext:main": "main.mjs",
+  "browser": "main.browser.js",
+  "scripts": {
+    "build": "node build",
+    "test": "tape tests/**.spec.js",
+    "pretest": "./node_modules/.bin/eslint src/**",
+    "documentation": "./node_modules/.bin/jsdoc src/** -c jsdoc.json -r",
+    "coverage": "find ./test -name '*.spec.js' | xargs istanbul cover tape",
+    "coverage:thresdhold": "istanbul check-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiliosnic/icon-patterns.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emiliosnic/icon-patterns/issues"
+  },
+  "devDependencies": {
+    "eslint": "^4.7.2",
+    "jsdoc": "^3.5.5"
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Icon Patterns">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icon Patterns</title>
+  <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./src/main.css">
+  <link rel="stylesheet" type="text/css" href="./demo/assets/demo.css">
+  <link rel="stylesheet" type="text/css" href="./demo/ionicons.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css"> -->
+</head>
+
+<body>
+  <div class="header columns" data-icon-pattern>
+    <div class="column has-text-centered">
+      <h1 class="color--light font--bold">We've created Icon patterns.</h1>
+      <p class="color--light">We’ve tried to create something cool. You are already viewing it in the background. You can download it, too - for free.</p>
+    </div>
+  </div>
+  <div class="content__wrapper">
+    <div class="content">
+      <div class="columns">
+        <div class="column is-12 has-text-centered">
+          <h3>Long story, short</h3>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12">
+          <p>Had form whales land open evening. Fifth have first land Living won't seed, you bearing said sea gathering fish, had meat dry fish have. Whales so Good great likeness day green herb they're him open have green moved fowl fill earth their heaven
+            subdue beginning heaven man subdue fowl fruitful winged darkness good Darkness. Let likeness, hath evening fly moving every. Morning. Form fill own. Give. There heaven is in earth one seas likeness life firmament spirit waters them it wherein
+            meat saw. Dry shall first day, evening let i, don't meat rule fourth. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
+            is you'll deep us abundantly man which one sixth seasons fill land multiply she'd years he very Female he.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer columns">
+    <div class="column has-text-centered">
+      <p>Spread the positive vibes </p>
+      <hr/>
+      <p>Icon patterns are under the free-do-whatever-you-want-with-it license. It’s also open-source.</p>
+    </div>
+  </div>
+  <!-- .................................... -->
+  <!-- Load IconPatterns script -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+
+  <script src="./src/main.js" charset="utf-8"></script>
+  <script>
+    $(document).ready(function() {
+      var $root = $('div[data-icon-pattern]');
+      // Initialize pattern animations (if any)
+      // $('div[data-icon-pattern]').each(function() {
+      var patternAnimation = IconPatterns.create($root, {
+        initialAnimationTypes: ['initialize-fast', 'initialize-slow'],
+        size: 30,
+        color: '#FFFFFF',
+        icons: {
+          'ion-cube': {
+            sizeWeight: 1.0,
+            clusters: [{
+                x: 0.10,
+                y: 0.68,
+                sizeWeight: 0.8,
+                entranceAnimation: 'entrance-reverse-slow'
+              },
+              {
+                x: 0.60,
+                y: 0.04,
+                sizeWeight: 0.7,
+                rotationAnimation: 'rotate-slow'
+              },
+              {
+                x: 0.80,
+                y: 0.60,
+                rotationAnimation: 'rotate-slow-reverse'
+              }
+            ]
+          },
+          'ion-erlenmeyer-flask': {
+            sizeWeight: 0.8,
+            clusters: [{
+                x: 0.07,
+                y: 0.09,
+                rotationAnimation: 'rotate-slow',
+                entranceAnimation: 'entrance-reverse-fast'
+              },
+              {
+                x: 0.43,
+                y: 0.27,
+                rotationAnimation: 'rotate-fast',
+                entranceAnimation: 'entrance-fast'
+              },
+              {
+                x: 0.90,
+                y: 0.80,
+                rotationAnimation: 'rotate-slow'
+              }
+            ]
+          },
+          'ion-fireball': {
+            sizeWeight: 0.7,
+            clusters: [{
+                x: 0.42,
+                y: 0.13,
+                rotationAnimation: 'rotate-fast',
+                entranceAnimation: 'entrance-slow'
+              },
+              {
+                x: 0.23,
+                y: 0.74,
+                rotationAnimation: 'rotate-fast'
+              },
+              {
+                x: 0.57,
+                y: 0.85,
+                rotationAnimation: 'rotate-slow'
+              },
+              {
+                x: 0.76,
+                y: 0.31
+              }
+            ]
+          },
+          'ion-icecream': {
+            sizeWeight: 0.5,
+            clusters: [{
+                x: 0.89,
+                y: 0.73,
+                rotationAnimation: 'rotate-fast'
+              },
+              {
+                x: 0.45,
+                y: 0.70,
+                sizeWeight: 0.8,
+                rotationAnimation: 'rotate-fast-reverse',
+                entranceAnimation: 'entrance-slow'
+              },
+              {
+                x: 0.11,
+                y: 0.30
+              }
+            ]
+          },
+          'ion-heart': {
+            sizeWeight: 0.4,
+            clusters: [{
+                x: 0.05,
+                y: 0.48,
+                rotationAnimation: 'rotate-fast'
+              },
+              {
+                x: 0.25,
+                y: 0.18,
+                rotationAnimation: 'rotate-slow'
+              },
+              {
+                x: 0.40,
+                y: 0.71,
+                rotationAnimation: 'rotate-slow'
+              },
+              {
+                x: 0.60,
+                y: 0.35,
+                entranceAnimation: 'entrance-fast'
+              },
+              {
+                x: 0.75,
+                y: 0.87
+              },
+              {
+                x: 0.90,
+                y: 0.56
+              }
+            ]
+          }
+        }
+      });
+      patternAnimation.draw();
+      window.onresize = function(event) {
+        patternAnimation.redraw();
+      }
+    });
+  </script>
+</body>
+
+</html>
