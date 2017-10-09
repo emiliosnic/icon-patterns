@@ -8,7 +8,7 @@ Animated icon-pattern background for webpages
 
 Install the required dependencies
 ```
-make dependencies
+npm install
 ```
 
 To build the library use
@@ -35,12 +35,14 @@ You can access the report by running `open coverage/lcov-report/index.html`.
 
 ---
 
-## API Reference
+## Documentation Reference
 
 To generate the [JSDoc](http://usejsdoc.org/) API Reference run
 ```
 npm run documentation
 ```
+
+You can find the latest documentation reference see [emiliosnic.github.io/icon-patterns/documentation/index.html](emiliosnic.github.io/icon-patterns/documentation/index.html)
 
 ---
 

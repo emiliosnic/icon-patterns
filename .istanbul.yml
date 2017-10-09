@@ -1,0 +1,6 @@
+verbose: false
+reporting:
+  print: summary
+  reports:
+    - lcov
+  dir: ./coverage
