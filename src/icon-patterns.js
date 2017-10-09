@@ -1,3 +1,21 @@
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// https://github.com/claviska/jquery-minicolors/blob/master/jquery.minicolors.js
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
+// Redfactor according to this
 
 /**
  * @namespace IconPatterns
@@ -19,7 +37,12 @@
   };
 
   /**
+   * Generates a random degree count for a rotation (0deg - 360deg)
+   *
+   * @method Helpers.getRandomRotation
    * @memberof IconPatterns
+   * @return {Number} degrees
+   *
    */
   IconPatterns.DEFAULTS = {
     /**
@@ -30,16 +53,28 @@
      */
   }
 
-  IconPatterns.create = function($container, config) {
+  /**
+   * Generates a new IconPattern instance
+   *
+   * @method Helpers.initialize
+   * @memberof IconPatterns
+   * @param {jQuery} $container
+   * @param {Object} config
+   * @return {PatternInstance}
+   *
+   */
+  IconPatterns.initialize = function($container, config) {
     return new PatternInstance($container, config);
   };
 
   /**
-     * Generates a PatternInstance instance
-     * @param {$Object} $selector
-     * @param {Object} config
-     * @return {Object} PatternInstance
-     */
+   * @class PatternInstance
+   *
+   * @constructor
+   * @param {jQuery} $selector
+   * @param {Object} config
+   * @return {Object} PatternInstance
+   */
   function PatternInstance($container, config) {
     config = config || {};
     if (!$container) {
@@ -59,8 +94,13 @@
   }
 
   /**
-     * Returns random initial animation
-     */
+   * Returns random initial animation
+   *
+   * @method getRandomInitialAnimation
+   * @memberof PatternInstance
+   * @return {Void}
+   *
+   */
   PatternInstance.prototype.getRandomInitialAnimation = function() {
     return this.initialAnimationTypes[Math.floor(Math.random() * (this.initialAnimationTypes.length - 0) + 0)];
   };
