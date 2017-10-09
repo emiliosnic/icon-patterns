@@ -19,19 +19,19 @@ npm run build
 
 ---
 
-## Tests
+## Tests & Coverage
 
 To run the tests use
 
 ```
 npm test
 ```
-To produce a test coverage report use
+To produce and access a test coverage report run
 
 ```
 npm run coverage
+open coverage/lcov-report/index.html
 ```
-You can access the report by running `open coverage/lcov-report/index.html`.
 
 ---
 
@@ -40,9 +40,9 @@ You can access the report by running `open coverage/lcov-report/index.html`.
 To generate the [JSDoc](http://usejsdoc.org/) API Reference run
 ```
 npm run documentation
+open documentation/index.html
 ```
 
-You can find the latest documentation reference see [emiliosnic.github.io/icon-patterns/documentation/index.html](emiliosnic.github.io/icon-patterns/documentation/index.html)
 
 ---
 

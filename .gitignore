@@ -9,6 +9,9 @@ node_modules/
 # Coverage files
 coverage/
 
+# Documentation files
+documentation/
+
 # Typescript v1 declaration files
 typings/
 
