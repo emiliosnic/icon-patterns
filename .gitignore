@@ -6,6 +6,9 @@ npm-debug.log*
 # Dependency directories
 node_modules/
 
+# Coverage files
+coverage/
+
 # Typescript v1 declaration files
 typings/
 
