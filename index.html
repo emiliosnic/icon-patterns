@@ -8,12 +8,78 @@
   <title>Icon Patterns</title>
   <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/ -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css"> -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./src/main.css">
-  <link rel="stylesheet" type="text/css" href="./demo/assets/demo.css">
-  <link rel="stylesheet" type="text/css" href="./demo/ionicons.css">
-  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css"> -->
+  <link rel="stylesheet" type="text/css" href="./src/icon-patterns.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+  <style>
+    body,
+    html {
+      font-family: 'Roboto', sans-serif;
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 44px;
+    }
+
+    .header {
+      padding: 200px 0 350px 0;
+      background: transparent;
+      background: #F26470;
+      background-image: -moz-linear-gradient(top, #F26470, #FF8993);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F26470), color-stop(1, #FF8993));
+      background-image: linear-gradient(top, #F26470, #FF8993);
+    }
+
+    hr {
+      margin: 0 auto;
+      margin-bottom: 52px;
+      margin-top: 52px;
+      width: 950px;
+      height: 1px;
+      border: none;
+      background-color: #E8E8E8;
+    }
+
+    .content__wrapper {
+      background-color: #FDFDFD;
+      display: block;
+      position: relative;
+    }
+
+    .content {
+      top: -200px;
+      z-index: 1;
+      margin: 0 auto;
+      position: relative;
+      width: auto;
+      max-width: 950px;
+      padding: 200px;
+      border-radius: 8px;
+      background-color: #FFF;
+      box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
+      -moz-box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
+      -webkit-box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
+    }
+
+    .footer {
+      background-color: #FFF;
+    }
+
+    .color--light {
+      color: #FFF;
+    }
+
+    .font--bold {
+      font-weight: bold;
+    }
+  </style>
+
+
 </head>
 
 <body>
@@ -52,14 +118,12 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 
-  <script src="./src/main.js" charset="utf-8"></script>
+  <script src="./src/icon-patterns.js" charset="utf-8"></script>
   <script>
     $(document).ready(function() {
       var $root = $('div[data-icon-pattern]');
-      // Initialize pattern animations (if any)
-      // $('div[data-icon-pattern]').each(function() {
-      var patternAnimation = IconPatterns.create($root, {
-        initialAnimationTypes: ['initialize-fast', 'initialize-slow'],
+      var patternAnimation = $('div[data-icon-pattern]').iconPatterns({
+        initialanimations: ['initialize-fast', 'initialize-slow'],
         size: 30,
         color: '#FFFFFF',
         icons: {

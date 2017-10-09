@@ -1,117 +1,106 @@
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// https://github.com/claviska/jquery-minicolors/blob/master/jquery.minicolors.js
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-// Redfactor according to this
-
 /**
  * @namespace IconPatterns
  */
-(function(IconPatterns) {
+(function(factory) {
+  if (typeof define === "function" && define.amd) {
+    // AMD import
+    define(["jquery"], factory);
+  } else if (typeof exports === "object") {
+    // Node/CommonJS import
+    if (global.window) {
+      module.exports = factory(require("jQuery")(global.window));
+    } else {
+      const JSDOM = require("jsdom").JSDOM;
+      module.exports = factory(require("jQuery")(new JSDOM("<!DOCTYPE html>").window));
+    }
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
+  "use strict";
 
-  IconPatterns.Helpers = {
+  /**
+   * Internal helper functions
+   *
+   * @namespace IconPatterns.Helpers
+   * @memberof IconPatterns
+   * @return {Object}
+   */
+  const Helpers = {
     /**
      * Generates a random degree count for a rotation (0deg - 360deg)
      *
      * @method Helpers.getRandomRotation
      * @memberof IconPatterns
      * @return {Number} degrees
-     *
      */
     getRandomRotation: function() {
       return Math.round(Math.random() * 360) + 1;
     }
-  };
-
-  /**
-   * Generates a random degree count for a rotation (0deg - 360deg)
-   *
-   * @method Helpers.getRandomRotation
-   * @memberof IconPatterns
-   * @return {Number} degrees
-   *
-   */
-  IconPatterns.DEFAULTS = {
-    /**
-    ......
-    ......
-    ......
-    ......
-     */
   }
 
   /**
-   * Generates a new IconPattern instance
-   *
-   * @method Helpers.initialize
    * @memberof IconPatterns
-   * @param {jQuery} $container
-   * @param {Object} config
-   * @return {PatternInstance}
-   *
+   * @property {object} defaults           - The default setupf or iconPatterns
+   * @property {array} defaults.animations - The available animation types
+   * @property {number} defaults.size      - The default icon size
+   * @property {string} defaults.color     - The default icon color
    */
-  IconPatterns.initialize = function($container, config) {
-    return new PatternInstance($container, config);
+  $.iconPatterns = {
+    defaults: {
+      animations: [
+        "initialize-fast", "initialize-slow"
+      ],
+      size: 30,
+      color: "#FFFFFF"
+    }
   };
 
   /**
    * @class PatternInstance
    *
    * @constructor
-   * @param {jQuery} $selector
-   * @param {Object} config
-   * @return {Object} PatternInstance
+   * @memberof IconPatterns
+   * @param {jQuery} $container
+   * @param {object} config
+   * @return {PatternInstance}
    */
   function PatternInstance($container, config) {
     config = config || {};
-    if (!$container) {
-      throw new Error('Invalid jQuery object passed');
-    }
-    if (!config.size) {
-      throw new Error('Invalid size passed');
-    }
     if (!config.icons || !Object.keys(config.icons).length) {
-      throw new Error('Invalid icons passed');
+      throw new Error('No icon set defined');
     }
-    this.color = config.color || DEFAULTS.color;
-    this.container = $container;
+    this.color = config.color;
     this.size = config.size;
     this.icons = config.icons;
-    this.initialAnimationTypes = config.initialAnimationTypes || ['default'];
+    this.container = $container;
+    this.animations = config.animations;
   }
 
   /**
    * Returns random initial animation
    *
    * @method getRandomInitialAnimation
-   * @memberof PatternInstance
-   * @return {Void}
+   * @memberof IconPatterns.PatternInstance
+   * @return {string}
    *
    */
   PatternInstance.prototype.getRandomInitialAnimation = function() {
-    return this.initialAnimationTypes[Math.floor(Math.random() * (this.initialAnimationTypes.length - 0) + 0)];
+    return this.animations[Math.floor(Math.random() * (this.animations.length - 0) + 0)];
   };
+
   /**
-     * Generates an icon
-     * @param {String} name
-     * @param {Number} size
-     * @param {Object} pos
-     * @param {Number} rotation
-     * @return {String} html
-     */
+   * Generates an icon
+   *
+   * @method generateIcon
+   * @memberof IconPatterns.PatternInstance
+   * @param {string} name
+   * @param {number} size
+   * @param {object} pos
+   * @param {number} rotation
+   * @return {string} html
+   */
   PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation) {
     var iconStyle = [
       'font-size: ' + size + 'px',
@@ -127,16 +116,26 @@
 
     return '<span class="initial-animation-wrapper ' + initialAnimation + '" style="' + wrapperStyle.join(';') + '"><span class="entrance-animation-wrapper ' + entranceAnimation + '"> <i class="' + [className, rotationAnimation].join(' ') + '" style="' + iconStyle.join(';') + '"></i></span></span>';
   };
+
   /**
-   * Rerenders a canvas scene with icons
+   * Redreaw a canvas scene
+   *
+   * @method redraw
+   * @memberof IconPatterns.PatternInstance
+   * @return {void}
    */
   PatternInstance.prototype.redraw = function() {
     this.root.remove();
     this.draw();
   };
+
   /**
-     * Renders a canvas scene with icons
-     */
+   * Renders a canvas scene with icons
+   *
+   * @method draw
+   * @memberof IconPatterns.PatternInstance
+   * @return {void}
+   */
   PatternInstance.prototype.draw = function() {
     this.root = $('<div class="icon-pattern-animation"></div>');
     this.rootWidth = this.container.outerWidth();
@@ -147,8 +146,8 @@
     var that = this;
     for (var name in this.icons) {
       var icon = this.icons[name];
-      var rotation = IconPatterns.Helpers.getRandomRotation();
-      var rotation2 = IconPatterns.Helpers.getRandomRotation();
+      var rotation = Helpers.getRandomRotation();
+      var rotation2 = Helpers.getRandomRotation();
       var clusters = icon.clusters;
       for (var idx = 0; idx < clusters.length; idx++) {
         var cluster = clusters[idx];
@@ -156,24 +155,44 @@
           x: parseInt(cluster.x * that.rootWidth),
           y: parseInt(cluster.y * that.rootHeight)
         };
-
         // Determine sizeWeight for each icon
         var sizeWeight = cluster.sizeWeight || icon.sizeWeight;
         var size = this.size * sizeWeight;
-
         // Determine initial animation for all icons
         var initialAnimation = ('initialAnimation' in cluster)
           ? cluster.initialAnimation
           : this.getRandomInitialAnimation();
-
         // Determine random animations
         var rotationAnimation = cluster.rotationAnimation || '';
         var entranceAnimation = cluster.entranceAnimation || '';
-
         var $icon = $(that.generateIcon(this.color, name, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation));
         that.root.append($icon);
       }
     }
   };
 
-}(window.IconPatterns = window.IconPatterns || {}));
+  /**
+   * Attaches IconPatern to jQuery namespace
+   * @ignore
+   */
+  $.extend($.fn, {
+    /**
+     * Retunns a new PatternInstance for a given configuration
+     *
+     * @method iconPatterns
+     * @param {object} config
+     * @return {PatternInstance}
+     */
+    iconPatterns: function(config) {
+      $(this).append('<div>works</div>');
+      // return $(this);
+      return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.defaults))
+    }
+  });
+
+  /**
+   * Public functions
+   */
+  return {Helpers: Helpers}
+
+}));
