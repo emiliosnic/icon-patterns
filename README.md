@@ -7,13 +7,12 @@ Animated icon-pattern background for webpages
  ### Demo & Usage:  
 
  <p align="center">
-  [https://emiliosnic.github.io/icon-patterns](https://emiliosnic.github.io/icon-patterns)
+   <b>https://emiliosnic.github.io/icon-patterns</b>
 
    [![Preview](https://user-images.githubusercontent.com/1907604/31371508-0a697fd0-ad46-11e7-9005-1af0f41d88a6.jpg)](https://emiliosnic.github.io/icon-patterns)
  </p>
 
 
----
 
 ### Getting Started
 
