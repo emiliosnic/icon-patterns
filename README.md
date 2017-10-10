@@ -14,7 +14,7 @@ Animated icon-pattern background for webpages
 
 
 
-### Getting Started
+### Development Guidelines
 
 Install the required dependencies
 ```

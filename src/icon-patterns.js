@@ -121,11 +121,12 @@
    *
    * @method redraw
    * @memberof IconPatterns.PatternInstance
-   * @return {void}
+   * @return {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.redraw = function() {
     this.root.remove();
     this.draw();
+    return this;
   };
 
   /**
@@ -133,7 +134,7 @@
    *
    * @method draw
    * @memberof IconPatterns.PatternInstance
-   * @return {void}
+   * @return {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.draw = function() {
     this.root = $("<div class='icon-pattern-animation'></div>");
@@ -167,6 +168,7 @@
         that.root.append($icon);
       }
     }
+    return this;
   };
 
   /**

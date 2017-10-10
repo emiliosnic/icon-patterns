@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./src/icon-patterns.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <style>
     body,
     html {
@@ -58,7 +59,7 @@
       position: relative;
       width: auto;
       max-width: 950px;
-      padding: 200px;
+      padding: 160px;
       border-radius: 8px;
       background-color: #FFF;
       box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
@@ -78,8 +79,6 @@
       font-weight: bold;
     }
   </style>
-
-
 </head>
 
 <body>
@@ -102,6 +101,43 @@
             subdue beginning heaven man subdue fowl fruitful winged darkness good Darkness. Let likeness, hath evening fly moving every. Morning. Form fill own. Give. There heaven is in earth one seas likeness life firmament spirit waters them it wherein
             meat saw. Dry shall first day, evening let i, don't meat rule fourth. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
             is you'll deep us abundantly man which one sixth seasons fill land multiply she'd years he very Female he.</p>
+          <p>
+            Load Dependencies
+            <pre><code class="html">&lt;-- Load this in your head section --&gt;
+&lt;link rel="stylesheet" type="text/css" href="./src/icon-patterns.css"&gt;</code></pre>
+<pre><code class="html">&lt;-- Load this in before closing the body tag --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="./src/icon-patterns.js" charset="utf-8"&gt;&lt;/script&gt;
+</code></pre>
+
+
+          </p>
+          <p>
+            Setup DOM
+            <pre><code class="html">&lt;div id="container"&gt; Content &lt;/div&gt;</code></pre>
+          </p>
+          <p>
+            Initialize icon patterns
+<pre><code class="html">
+&lt;script type="text/javascript"&gt;
+  $(document).ready(() => {
+    const patternAnimation = $('#container')
+      .iconPatterns({...})
+      .draw();
+    // Bind redraw event on resize
+    window.onresize = () => patternAnimation.redraw();
+  });
+&lt;script/&gt;
+</code></pre>
+          </p>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12">
+          <!-- Place this tag where you want the button to render. -->
+          <a class="github-button" href="https://github.com/emiliosnic/icon-patterns/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download emiliosnic/icon-patterns on GitHub">Download</a>
+          <!-- Place this tag where you want the button to render. -->
+          <a class="github-button" href="https://github.com/emiliosnic/icon-patterns/fork" data-size="large" data-icon="octicon-repo-forked" aria-label="Fork emiliosnic/icon-patterns on GitHub">Fork</a>
         </div>
       </div>
     </div>
@@ -116,7 +152,6 @@
   <!-- .................................... -->
   <!-- Load IconPatterns script -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
 
   <script src="./src/icon-patterns.js" charset="utf-8"></script>
   <script>
@@ -253,6 +288,12 @@
       }
     });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
