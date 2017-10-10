@@ -48,3 +48,7 @@ open documentation/index.html
 ### Versioning
 
 For the versions available, see the [releases for this repository](https://github.com/emiliosnic/icon-patterns/tags).
+
+### Authors
+- [andrewch](http://andrewch.eu)
+- [emiliosnic](https://github.com/emiliosnic)
