@@ -1,0 +1,16 @@
+{
+  "name": "emiliosnic/icon-patterns",
+  "version": "0.0.9",
+  "description": "Icon Patterns",
+  "homepage": "https://emiliosnic.github.io/icon-patterns",
+  "main": [ "./src/icon-patterns.js", "./src/icon-patterns.css" ],
+  "dependencies": {
+    "jquery": ">= 2.0.x"
+  },
+  "author": {
+    "name": "emiliosnic",
+  },
+  "license": [
+    "http://www.opensource.org/licenses/mit-license.php"
+  ]
+}

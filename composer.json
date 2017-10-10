@@ -1,0 +1,18 @@
+{
+  "name": "emiliosnic/icon-patterns",
+  "type": "component",
+  "description": "Icon Patterns",
+  "homepage": "https://emiliosnic.github.io/icon-patterns",
+  "license": "MIT",
+  "extra": {
+    "component": {
+      "scripts": [
+        "src/icon-patterns.js"
+      ],
+      "files": [
+        "src/icon-patterns.js",
+        "src/icon-patterns.css"
+      ]
+    }
+  }
+}
