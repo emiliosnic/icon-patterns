@@ -8,8 +8,6 @@ Animated icon-pattern background for webpages
    [![Preview](http://user-images.githubusercontent.com/1907604/31371508-0a697fd0-ad46-11e7-9005-1af0f41d88a6.jpg)](https://emiliosnic.github.io/icon-patterns)
  </div>
 
-[![Preview](http://user-images.githubusercontent.com/1907604/31371508-0a697fd0-ad46-11e7-9005-1af0f41d88a6.jpg)](https://emiliosnic.github.io/icon-patterns)
-
 ### Development Guidelines
 
 Install the required dependencies
