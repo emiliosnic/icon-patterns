@@ -2,7 +2,10 @@
 
 Animated icon-pattern background for webpages
 
- [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![apm](https://img.shields.io/apm/l/vim-mode.svg)]() [![Github file size](https://img.shields.io/github/size/emiliosnic/icon-patterns/src/icon-patterns.min.js.svg)]()
+
+
+[![David](https://img.shields.io/david/emiliosnic/icon-patterns.svg)]()
 
 ---
 

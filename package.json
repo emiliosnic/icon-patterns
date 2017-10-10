@@ -1,6 +1,6 @@
 {
   "name": "icon-patterns",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Animated icon-pattern background for webpages",
   "main": "src/main.js",
   "jsnext:main": "main.mjs",
@@ -23,7 +23,7 @@
     "url": "https://github.com/emiliosnic/icon-patterns/issues"
   },
   "dependencies": {
-    "jquery": ">= 2.0.x"
+    "jquery": ">= 3.0.x"
   },
   "devDependencies": {
     "eslint": "^4.8.0",
