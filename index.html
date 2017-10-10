@@ -106,21 +106,22 @@
     <div class="content">
       <div class="columns">
         <div class="column is-12 has-text-centered">
-          <h3>Long story, short</h3>
+          <h3>Icon patterns for your background</h3>
         </div>
       </div>
       <div class="columns">
         <div class="column is-12">
-          <p>Had form whales land open evening. Fifth have first land Living won't seed, you bearing said sea gathering fish, had meat dry fish have. Whales so Good great likeness day green herb they're him open have green moved fowl fill earth their heaven
-            subdue beginning heaven man subdue fowl fruitful winged darkness good Darkness. Let likeness, hath evening fly moving every. Morning. Form fill own. Give. There heaven is in earth one seas likeness life firmament spirit waters them it wherein
-            meat saw. Dry shall first day, evening let i, don't meat rule fourth. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
+          <p>Had form whales land open evening. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
             is you'll deep us abundantly man which one sixth seasons fill land multiply she'd years he very Female he.</p>
           <p class="section__title">
             Load Dependencies
           </p>
             <pre><code class="html">&lt;!-- Load this in your head section --&gt;
 &lt;link rel="stylesheet" type="text/css" href="./src/icon-patterns.css"&gt;</code></pre>
-<pre><code class="html">&lt;!-- Load this in before closing the body tag --&gt;
+<pre><code class="html">&lt;!-- Load the icon set that you will be using, ie ionicons --&gt;
+&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" &gt;
+
+&lt;!-- Load this in before closing the body tag --&gt;
 &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
 &lt;script src="./src/icon-patterns.js" &gt;&lt;/script&gt;
 </code></pre>
@@ -128,19 +129,64 @@
             Setup DOM
           </p>
           <pre><code class="html">&lt;div id="container"&gt; Content &lt;/div&gt;</code></pre>
+          </h3>
           <p class="section__title">
             Initialize icon patterns
           </p>
-<pre><code class="html">&lt;script type="text/javascript"&gt;
-  $(document).ready(() => {
-    const patternAnimation = $('#container')
-      .iconPatterns({...})
-      .draw();
-    // Bind redraw event on resize
-    window.onresize = () => patternAnimation.redraw();
-  });
-&lt;script/&gt;
+<pre><code class="js">$(document).ready(() => {
+  const patternAnimation = $('#container').IconPatterns({
+    color: '#FFFFFF',
+    icons: [
+      {name: 'ion-erlenmeyer-flask'},
+      {name: 'ion-fireball'}
+    ]
+  }).draw();
+});</pre></code>
+          <p class="section__title">
+            Customize icons and animations
+          </p>
+<pre><code class="js">$(document).ready(() => {
+  const ANIMATIONS = $.IconPatterns.ANIMATIONS;
+  const patternAnimation = $('#container').IconPatterns({
+    color: '#FFFFFF',
+    icons: [
+    {
+      // Required name
+      name: 'ion-erlenmeyer-flask',
+    }, {
+      // You can optionally define the animation styles you want
+      name: 'ion-fireball',
+      animations: [ANIMATIONS.ROTATE_SLOW, ANIMATIONS.EXPAND]
+    }, {
+      // Or you can customize in depth
+      name: 'ion-cube',
+      count: 10,
+      sizeVariation: [40, 80],
+      animations: [ANIMATIONS.ROTATE, ANIMATIONS.EXPAND_FAST]
+    }]
+  }).draw();
+
+  // Bind redraw event on resize
+  window.onresize = () => patternAnimation.redraw();
+});</code></pre>
+<p class="section__title">
+  Available animation styles
+</p>
+<pre><code class="js">const ANIMATIONS = $.IconPatterns.ANIMATIONS;
+ANIMATIONS.ROTATE
+ANIMATIONS.ROTATE_SLOW
+ANIMATIONS.ROTATE_FAST
+ANIMATIONS.EXPAND
+ANIMATIONS.EXPAND_SLOW
+ANIMATIONS.EXPAND_FAST
 </code></pre>
+<p class="section__title">
+  Examples
+</p>
+<ul>
+  <li>LINK TO EXAMPLES 1</li>
+  <li>LINK TO EXAMPLES 2</li>
+</ul>
         </div>
       </div>
       <div class="columns">
@@ -178,7 +224,7 @@
   <script src="./src/icon-patterns.js" charset="utf-8"></script>
   <script>
     $(document).ready(function() {
-      var patternAnimation = $('div[data-icon-pattern]').iconPatterns({
+      var patternAnimation = $('div[data-icon-pattern]').IconPatterns({
         size: 50,
         color: '#FFFFFF',
         icons: {
@@ -188,7 +234,7 @@
                 x: 0.10,
                 y: 0.68,
                 sizeWeight: 0.8,
-                entranceAnimation: 'entrance--slow--reverse'
+                entranceAnimation: 'expand--reverse--slow'
               },
               {
                 x: 0.60,
@@ -199,7 +245,7 @@
               {
                 x: 0.80,
                 y: 0.60,
-                rotationAnimation: 'rotate--slow--reverse'
+                rotationAnimation: 'rotate--reverse--slow'
               }
             ]
           },
@@ -209,13 +255,13 @@
                 x: 0.07,
                 y: 0.09,
                 rotationAnimation: 'rotate--slow',
-                entranceAnimation: 'entrance--fast--reverse'
+                entranceAnimation: 'expand--reverse'
               },
               {
                 x: 0.43,
                 y: 0.27,
-                rotationAnimation: 'rotate--fast',
-                entranceAnimation: 'entrance--fast'
+                rotationAnimation: 'rotate',
+                entranceAnimation: 'expand-out--fast'
               },
               {
                 x: 0.90,
@@ -230,7 +276,7 @@
                 x: 0.42,
                 y: 0.13,
                 rotationAnimation: 'rotate--fast',
-                entranceAnimation: 'entrance--slow'
+                entranceAnimation: 'expand'
               },
               {
                 x: 0.23,
@@ -240,7 +286,7 @@
               {
                 x: 0.57,
                 y: 0.85,
-                rotationAnimation: 'rotate--slow'
+                rotationAnimation: 'rotate'
               },
               {
                 x: 0.76,
@@ -259,8 +305,8 @@
                 x: 0.45,
                 y: 0.70,
                 sizeWeight: 0.8,
-                rotationAnimation: 'rotate--fast--reverse',
-                entranceAnimation: 'entrance--slow'
+                rotationAnimation: 'rotate--reverse--fast',
+                entranceAnimation: 'expand--reverse--slow'
               },
               {
                 x: 0.11,
@@ -283,12 +329,13 @@
               {
                 x: 0.40,
                 y: 0.71,
+                entranceAnimation: 'expand',
                 rotationAnimation: 'rotate--slow'
               },
               {
                 x: 0.60,
                 y: 0.35,
-                entranceAnimation: 'entrance--fast'
+                entranceAnimation: 'expand--reverse--fast'
               },
               {
                 x: 0.75,

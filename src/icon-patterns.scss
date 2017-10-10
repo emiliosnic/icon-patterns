@@ -1,3 +1,4 @@
+$rotate-duration: 10s;
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -7,6 +8,7 @@
     transform: rotate(360deg);
   }
 }
+$zoom-in-duration: 8s;
 @keyframes zoom-in {
   0% {
     opacity: 0;
@@ -18,7 +20,8 @@
     transform: scale(1) rotate(0deg);
   }
 }
-@keyframes zoom-out-alternate {
+$expand-duration: 12s;
+@keyframes expand {
   0%,
   40% {
     opacity: 1;
@@ -37,7 +40,8 @@
     transform: scale(1);
   }
 }
-@keyframes zoom-out-alternate-reverse {
+$expand-reverse-duration: 10s;
+@keyframes expand-reverse {
   0%,
   20% {
     opacity: 0;
@@ -61,51 +65,71 @@
   transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: absolute;
 
+  &.initialize {
+    animation: zoom-in $zoom-in-duration cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+  }
+
   &.initialize--slow {
-    animation: zoom-in 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+    animation: zoom-in $zoom-in-duration * 1.5 cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
   }
 
   &.initialize--fast {
-    animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
+    animation: zoom-in $zoom-in-duration * 0.5 cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
   }
 }
 
 .icon-patterns__overlay .icon-patterns__animations__entrance {
   display: inline-block;
 
-  &.entrance--fast {
-    animation: zoom-out-alternate 8s ease-in-out infinite both;
+  &.expand {
+    animation: expand $expand-duration ease-in-out infinite both;
   }
 
-  &.entrance--slow {
-    animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
+  &.expand--fast {
+    animation: expand $expand-duration * 0.5 ease-in-out infinite both;
   }
 
-  &.entrance--fast--reverse {
-    animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
+  &.expand--slow {
+    animation: expand $expand-duration * 1.5 ease-in-out infinite both;
   }
 
-  &.entrance--slow--reverse {
-    animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
+  &.expand--reverse {
+    animation: expand-reverse $expand-duration ease-in-out infinite;
+  }
+
+  &.expand--reverse--fast {
+    animation: expand-reverse $expand-duration * 0.5 ease-in-out infinite;
+  }
+
+  &.expand--reverse--slow {
+    animation: expand-reverse $expand-duration * 1.5 ease-in-out infinite both;
   }
 }
 
-.icon-patterns__overlay > i {
+.icon-patterns__overlay i {
   display: inline-block;
 
+  &.rotate {
+    animation: rotate $rotate-duration linear infinite both;
+  }
+
   &.rotate--slow {
-    animation: rotate 20s linear infinite both;
+    animation: rotate $rotate-duration * 1.5 linear infinite both;
   }
 
   &.rotate--fast {
-    animation: rotate 20s linear infinite both;
+    animation: rotate $rotate-duration * 0.5 linear infinite both;
   }
 
-  &.rotate--slow--reverse {
-    animation: rotate 20s linear infinite both reverse;
+  &.rotate--reverse {
+    animation: rotate $rotate-duration linear infinite both reverse;
   }
 
-  &.rotate--fast--reverse {
-    animation: rotate 20s linear infinite both reverse;
+  &.rotate--reverse--slow {
+    animation: rotate $rotate-duration * 1.5 linear infinite both reverse;
+  }
+
+  &.rotate--reverse--fast {
+    animation: rotate $rotate-duration * 0.5 linear infinite both reverse;
   }
 }

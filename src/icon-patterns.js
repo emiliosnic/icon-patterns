@@ -46,12 +46,11 @@
    * @property {array} defaults.animations - The available animation types
    * @property {number} defaults.size      - The default icon size
    * @property {string} defaults.color     - The default icon color
+   * @property {object} ANIMATIONS         - The available animation styles
    */
   $.iconPatterns = {
     defaults: {
-      animations: [
-        "initialize--fast", "initialize--slow"
-      ],
+      initialAnimations: ["initialize", "initialize--fast", "initialize--slow"],
       size: 30,
       color: "#FFFFFF"
     }
@@ -75,7 +74,7 @@
     this.size = config.size;
     this.icons = config.icons;
     this.$container = $container;
-    this.animations = config.animations;
+    this.initialAnimations = config.initialAnimations;
     this.$container.css("position", "relative")
   }
 
@@ -88,7 +87,7 @@
    *
    */
   PatternInstance.prototype.getRandomInitialAnimation = function() {
-    return this.animations[Math.floor(Math.random() * (this.animations.length - 0) + 0)];
+    return this.initialAnimations[Math.floor(Math.random() * (this.initialAnimations.length - 0) + 0)];
   };
 
   /**
@@ -125,7 +124,7 @@
    * @return {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.redraw = function() {
-    this.root.remove();
+    this.$root.remove();
     this.draw();
     return this;
   };
@@ -140,10 +139,10 @@
   PatternInstance.prototype.draw = function() {
     this.$root = $("<div class='icon-patterns__overlay'></div>");
     this.$root.css({"position": "absolute", "z-index": 1, "top": 0, "left":0});
-    this.rootWidth = this.$container.outerWidth();
-    this.rootHeight = this.$container.outerHeight();
-    this.$root.width(this.$container.outerWidth());
-    this.$root.height(this.$container.outerHeight());
+    var containerWidth = this.$container.outerWidth();
+    var containerHeight = this.$container.outerHeight();
+    this.$root.width(containerWidth);
+    this.$root.height(containerHeight);
     this.$container.prepend(this.$root);
     var self = this;
     for (var name in this.icons) {
@@ -153,8 +152,8 @@
       for (var idx = 0; idx < clusters.length; idx++) {
         var cluster = clusters[idx];
         var pos = {
-          x: parseInt(cluster.x * self.rootWidth),
-          y: parseInt(cluster.y * self.rootHeight)
+          x: parseInt(cluster.x * containerWidth),
+          y: parseInt(cluster.y * containerHeight)
         };
         // Determine sizeWeight for each icon
         var sizeWeight = cluster.sizeWeight || icon.sizeWeight;
@@ -163,9 +162,10 @@
         var initialAnimation = ("initialAnimation" in cluster)
           ? cluster.initialAnimation
           : this.getRandomInitialAnimation();
-        // Determine random animations
+        // Determine animations
         var rotationAnimation = cluster.rotationAnimation || "";
         var entranceAnimation = cluster.entranceAnimation || "";
+        // Generat and append icon
         var $icon = self.generateIcon(this.color, name, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation);
         self.$root.append($icon);
       }
@@ -181,11 +181,11 @@
     /**
      * Retunns a new PatternInstance for a given configuration
      *
-     * @method iconPatterns
+     * @method IconPatterns
      * @param {object} config
      * @return {PatternInstance}
      */
-    iconPatterns: function(config) {
+    IconPatterns: function(config) {
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.defaults));
     }
   });
