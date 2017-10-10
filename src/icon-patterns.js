@@ -10,7 +10,7 @@
     if (global.window) {
       module.exports = factory(require("jQuery")(global.window));
     } else {
-      const JSDOM = require("jsdom").JSDOM;
+      var JSDOM = require("jsdom").JSDOM;
       module.exports = factory(require("jQuery")(new JSDOM("<!DOCTYPE html>").window));
     }
   } else {
@@ -27,7 +27,7 @@
    * @memberof IconPatterns
    * @return {Object}
    */
-  const Helpers = {
+  var Helpers = {
     /**
      * Generates a random degree count for a rotation (0deg - 360deg)
      *

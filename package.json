@@ -6,7 +6,8 @@
   "jsnext:main": "main.mjs",
   "browser": "main.browser.js",
   "scripts": {
-    "build": "node build",
+    "start": "./node_modules/.bin/gulp watch",
+    "build": "./node_modules/.bin/gulp build",
     "pretest": "./node_modules/.bin/eslint -- ./src --config --ext .js",
     "test": "./node_modules/.bin/tape tests/**/*.spec.js",
     "documentation": "./node_modules/.bin/jsdoc ./src/** --configure jsdoc.json --readme README.md --recurse",
@@ -26,6 +27,11 @@
   },
   "devDependencies": {
     "eslint": "^4.8.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-help": "^1.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
     "jsdom": "^11.3.0",

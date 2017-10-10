@@ -2,6 +2,8 @@
 
 Animated icon-pattern background for webpages
 
+ [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
 ---
 
 ## Getting Started
@@ -17,7 +19,6 @@ To build the library use
 npm run build
 ```
 
----
 
 ## Tests & Coverage
 
@@ -33,7 +34,6 @@ npm run coverage
 open coverage/lcov-report/index.html
 ```
 
----
 
 ## Documentation Reference
 
@@ -44,7 +44,6 @@ open documentation/index.html
 ```
 
 
----
 
 ## Versioning
 
