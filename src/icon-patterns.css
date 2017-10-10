@@ -1,8 +1,4 @@
-/*
- * Custom animations
- */
-
-@keyframes rotate {
+@-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
@@ -10,7 +6,7 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
-@-webkit-keyframes rotate {
+@keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
@@ -151,66 +147,53 @@ div[data-icon-pattern] .icon-pattern-animation {
   top: 0;
   left: 0; }
 
-/* line 49, ../sass/test.scss */
 .icon-pattern-animation .initial-animation-wrapper {
   -webkit-transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: absolute; }
 
-/* line 52, ../sass/test.scss */
 .icon-pattern-animation .initial-animation-wrapper.initialize-slow {
   -webkit-animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
   animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both; }
 
-/* line 55, ../sass/test.scss */
 .icon-pattern-animation .initial-animation-wrapper.initialize-fast {
   -webkit-animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
   animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both; }
 
-/* line 59, ../sass/test.scss */
 .icon-pattern-animation .entrance-animation-wrapper {
   display: inline-block; }
 
-/* line 61, ../sass/test.scss */
 .icon-pattern-animation .entrance-animation-wrapper.entrance-fast {
   -webkit-animation: zoom-out-alternate 8s ease-in-out infinite both;
   animation: zoom-out-alternate 8s ease-in-out infinite both; }
 
-/* line 64, ../sass/test.scss */
 .icon-pattern-animation .entrance-animation-wrapper.entrance-slow {
   -webkit-animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
   animation: zoom-out-alternate 15s ease-in-out 3s infinite both; }
 
-/* line 67, ../sass/test.scss */
 .icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-fast {
   -webkit-animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
   animation: zoom-out-alternate-reverse 8s ease-in-out infinite; }
 
-/* line 70, ../sass/test.scss */
 .icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-slow {
   -webkit-animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
   animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both; }
 
-/* line 74, ../sass/test.scss */
 .icon-pattern-animation i {
   display: inline-block; }
 
-/* line 79, ../sass/test.scss */
 .icon-pattern-animation i.rotate-slow {
   -webkit-animation: rotate 20s linear infinite both;
   animation: rotate 20s linear infinite both; }
 
-/* line 82, ../sass/test.scss */
 .icon-pattern-animation i.rotate-fast {
   -webkit-animation: rotate 20s linear infinite both;
   animation: rotate 20s linear infinite both; }
 
-/* line 85, ../sass/test.scss */
 .icon-pattern-animation i.rotate-slow-reverse {
   -webkit-animation: rotate 20s linear infinite both reverse;
   animation: rotate 20s linear infinite both reverse; }
 
-/* line 88, ../sass/test.scss */
 .icon-pattern-animation i.rotate-fast-reverse {
   -webkit-animation: rotate 20s linear infinite both reverse;
   animation: rotate 20s linear infinite both reverse; }

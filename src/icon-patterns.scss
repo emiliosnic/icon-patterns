@@ -1,297 +1,90 @@
-/*
- * Custom animations
- */
- @-moz-keyframes rotate {
-   0% {
-     -moz-transform: rotate(0deg);
-     transform: rotate(0deg);
-   }
-   100% {
-     -moz-transform: rotate(360deg);
-     transform: rotate(360deg);
-   }
- }
- @keyframes rotate {
-   0% {
-     -moz-transform: rotate(0deg);
-     transform: rotate(0deg);
-   }
-   100% {
-     -moz-transform: rotate(360deg);
-     transform: rotate(360deg);
-   }
- }
- @-webkit-keyframes rotate {
-   0% {
-     -moz-transform: rotate(0deg);
-     transform: rotate(0deg);
-   }
-   100% {
-     -moz-transform: rotate(360deg);
-     transform: rotate(360deg);
-   }
- }
-
-
- @-moz-keyframes zoom-in-full {
+@keyframes rotate {
   0% {
-    opacity: 0;
-    -moz-transform: scale(0) rotate(-30deg);
-    transform: scale(0) rotate(-30deg);
+    transform: rotate(0deg);
   }
+
   100% {
-    opacity: 1;
-    -moz-transform: scale(1) rotate(0deg);
-    transform: scale(1) rotate(0deg);
-  }
-}
-@-webkit-keyframes zoom-in-full {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0) rotate(-30deg);
-    transform: scale(0) rotate(-30deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1) rotate(0deg);
-    transform: scale(1) rotate(0deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes zoom-in-full {
   0% {
     opacity: 0;
-    -moz-transform: scale(0) rotate(-30deg);
-    -ms-transform: scale(0) rotate(-30deg);
-    -webkit-transform: scale(0) rotate(-30deg);
     transform: scale(0) rotate(-30deg);
   }
+
   100% {
     opacity: 1;
-    -moz-transform: scale(1) rotate(0deg);
-    -ms-transform: scale(1) rotate(0deg);
-    -webkit-transform: scale(1) rotate(0deg);
     transform: scale(1) rotate(0deg);
-  }
-}
-@-moz-keyframes zoom-out-alternate {
-  0% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-  40% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-  80% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-  90% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes zoom-out-alternate {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  40% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  80% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  90% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
   }
 }
 @keyframes zoom-out-alternate {
   0% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
+
   40% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
+
   50% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
+
   80% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
+
   90% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
+
   100% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
-  }
-}
-@-moz-keyframes zoom-out-alternate-reverse {
-  0% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-  20% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-  30% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-  70% {
-    opacity: 1;
-    -moz-transform: scale(1);
-    transform: scale(1);
-  }
-  80% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-  100% {
-    opacity: 0;
-    -moz-transform: scale(0);
-    transform: scale(0);
-  }
-}
-@-webkit-keyframes zoom-out-alternate-reverse {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  20% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  30% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  70% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-  80% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
   }
 }
 @keyframes zoom-out-alternate-reverse {
   0% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
+
   20% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
+
   30% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
+
   70% {
     opacity: 1;
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
+
   80% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
+
   100% {
     opacity: 0;
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -webkit-transform: scale(0);
     transform: scale(0);
   }
 }
+
 div[data-icon-pattern] {
   position: relative;
 }
+
 div[data-icon-pattern] .icon-pattern-animation {
   z-index: 1;
   position: absolute;
@@ -299,79 +92,55 @@ div[data-icon-pattern] .icon-pattern-animation {
   left: 0;
 }
 
-/* line 49, ../sass/test.scss */
 .icon-pattern-animation .initial-animation-wrapper {
-  -moz-transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -webkit-transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: absolute;
 }
-/* line 52, ../sass/test.scss */
+
 .icon-pattern-animation .initial-animation-wrapper.initialize-slow {
-  -moz-animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-  -webkit-animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
   animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
 }
-/* line 55, ../sass/test.scss */
+
 .icon-pattern-animation .initial-animation-wrapper.initialize-fast {
-  -moz-animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
-  -webkit-animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
   animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
 }
-/* line 59, ../sass/test.scss */
+
 .icon-pattern-animation .entrance-animation-wrapper {
   display: inline-block;
 }
-/* line 61, ../sass/test.scss */
+
 .icon-pattern-animation .entrance-animation-wrapper.entrance-fast {
-  -moz-animation: zoom-out-alternate 8s ease-in-out infinite both;
-  -webkit-animation: zoom-out-alternate 8s ease-in-out infinite both;
   animation: zoom-out-alternate 8s ease-in-out infinite both;
 }
-/* line 64, ../sass/test.scss */
+
 .icon-pattern-animation .entrance-animation-wrapper.entrance-slow {
-  -moz-animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
-  -webkit-animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
   animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
 }
-/* line 67, ../sass/test.scss */
+
 .icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-fast {
-  -moz-animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
-  -webkit-animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
   animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
 }
-/* line 70, ../sass/test.scss */
+
 .icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-slow {
-  -moz-animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
-  -webkit-animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
   animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
 }
-/* line 74, ../sass/test.scss */
+
 .icon-pattern-animation i {
   display: inline-block;
 }
-/* line 79, ../sass/test.scss */
+
 .icon-pattern-animation i.rotate-slow {
-  -moz-animation: rotate 20s linear infinite both;
-  -webkit-animation: rotate 20s linear infinite both;
   animation: rotate 20s linear infinite both;
 }
-/* line 82, ../sass/test.scss */
+
 .icon-pattern-animation i.rotate-fast {
-  -moz-animation: rotate 20s linear infinite both;
-  -webkit-animation: rotate 20s linear infinite both;
   animation: rotate 20s linear infinite both;
 }
-/* line 85, ../sass/test.scss */
+
 .icon-pattern-animation i.rotate-slow-reverse {
-  -moz-animation: rotate 20s linear infinite both reverse;
-  -webkit-animation: rotate 20s linear infinite both reverse;
   animation: rotate 20s linear infinite both reverse;
 }
-/* line 88, ../sass/test.scss */
+
 .icon-pattern-animation i.rotate-fast-reverse {
-  -moz-animation: rotate 20s linear infinite both reverse;
-  -webkit-animation: rotate 20s linear infinite both reverse;
   animation: rotate 20s linear infinite both reverse;
 }
