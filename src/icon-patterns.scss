@@ -7,7 +7,7 @@
     transform: rotate(360deg);
   }
 }
-@keyframes zoom-in-full {
+@keyframes zoom-in {
   0% {
     opacity: 0;
     transform: scale(0) rotate(-30deg);
@@ -19,128 +19,93 @@
   }
 }
 @keyframes zoom-out-alternate {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
+  0%,
   40% {
     opacity: 1;
     transform: scale(1);
   }
 
-  50% {
-    opacity: 0;
-    transform: scale(0);
-  }
-
+  50%,
   80% {
     opacity: 0;
     transform: scale(0);
   }
 
+  100%,
   90% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  100% {
     opacity: 1;
     transform: scale(1);
   }
 }
 @keyframes zoom-out-alternate-reverse {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-
+  0%,
   20% {
     opacity: 0;
     transform: scale(0);
   }
 
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
+  30%,
   70% {
     opacity: 1;
     transform: scale(1);
   }
 
+  100%,
   80% {
     opacity: 0;
     transform: scale(0);
   }
+}
 
-  100% {
-    opacity: 0;
-    transform: scale(0);
+.icon-patterns__overlay .icon-patterns__animations__initial {
+  transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: absolute;
+
+  &.initialize--slow {
+    animation: zoom-in 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+  }
+
+  &.initialize--fast {
+    animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
   }
 }
 
-div[data-icon-pattern] {
-  position: relative;
-}
-
-div[data-icon-pattern] .icon-pattern-animation {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.icon-pattern-animation .initial-animation-wrapper {
-  transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  position: absolute;
-}
-
-.icon-pattern-animation .initial-animation-wrapper.initialize-slow {
-  animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-}
-
-.icon-pattern-animation .initial-animation-wrapper.initialize-fast {
-  animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
-}
-
-.icon-pattern-animation .entrance-animation-wrapper {
+.icon-patterns__overlay .icon-patterns__animations__entrance {
   display: inline-block;
+
+  &.entrance--fast {
+    animation: zoom-out-alternate 8s ease-in-out infinite both;
+  }
+
+  &.entrance--slow {
+    animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
+  }
+
+  &.entrance--fast--reverse {
+    animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
+  }
+
+  &.entrance--slow--reverse {
+    animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
+  }
 }
 
-.icon-pattern-animation .entrance-animation-wrapper.entrance-fast {
-  animation: zoom-out-alternate 8s ease-in-out infinite both;
-}
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-slow {
-  animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
-}
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-fast {
-  animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
-}
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-slow {
-  animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
-}
-
-.icon-pattern-animation i {
+.icon-patterns__overlay > i {
   display: inline-block;
-}
 
-.icon-pattern-animation i.rotate-slow {
-  animation: rotate 20s linear infinite both;
-}
+  &.rotate--slow {
+    animation: rotate 20s linear infinite both;
+  }
 
-.icon-pattern-animation i.rotate-fast {
-  animation: rotate 20s linear infinite both;
-}
+  &.rotate--fast {
+    animation: rotate 20s linear infinite both;
+  }
 
-.icon-pattern-animation i.rotate-slow-reverse {
-  animation: rotate 20s linear infinite both reverse;
-}
+  &.rotate--slow--reverse {
+    animation: rotate 20s linear infinite both reverse;
+  }
 
-.icon-pattern-animation i.rotate-fast-reverse {
-  animation: rotate 20s linear infinite both reverse;
+  &.rotate--fast--reverse {
+    animation: rotate 20s linear infinite both reverse;
+  }
 }

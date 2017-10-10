@@ -50,7 +50,7 @@
   $.iconPatterns = {
     defaults: {
       animations: [
-        "initialize-fast", "initialize-slow"
+        "initialize--fast", "initialize--slow"
       ],
       size: 30,
       color: "#FFFFFF"
@@ -74,8 +74,9 @@
     this.color = config.color;
     this.size = config.size;
     this.icons = config.icons;
-    this.container = $container;
+    this.$container = $container;
     this.animations = config.animations;
+    this.$container.css("position", "relative")
   }
 
   /**
@@ -99,21 +100,21 @@
    * @param {number} size
    * @param {object} pos
    * @param {number} rotation
-   * @return {string} html
+   * @return {jquery} icon
    */
   PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation) {
     var iconStyle = [
       "font-size: " + size + "px",
       "color: " + color
     ];
-    var wrapperStyle = [
+    var spanStyle = [
       "left: " + pos.x + "px",
       "top:" + pos.y + "px",
       "-webkit-transform: rotate(" + rotation + "deg)",
       "-MS-transform: rotate(" + rotation + "deg)",
       "transform: rotate(" + rotation + "deg)"
     ];
-    return "<span class='initial-animation-wrapper " + initialAnimation + "' style='" + wrapperStyle.join(";") + "'><span class='entrance-animation-wrapper " + entranceAnimation + "'> <i class='" + [className, rotationAnimation].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>";
+    return $("<span class='icon-patterns__animations__initial " + initialAnimation + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__entrance " + entranceAnimation + "'> <i class='" + [className, rotationAnimation].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
   };
 
   /**
@@ -137,13 +138,14 @@
    * @return {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.draw = function() {
-    this.root = $("<div class='icon-pattern-animation'></div>");
-    this.rootWidth = this.container.outerWidth();
-    this.rootHeight = this.container.outerHeight();
-    this.root.width(this.container.outerWidth());
-    this.root.height(this.container.outerHeight());
-    this.container.prepend(this.root);
-    var that = this;
+    this.$root = $("<div class='icon-patterns__overlay'></div>");
+    this.$root.css({"position": "absolute", "z-index": 1, "top": 0, "left":0});
+    this.rootWidth = this.$container.outerWidth();
+    this.rootHeight = this.$container.outerHeight();
+    this.$root.width(this.$container.outerWidth());
+    this.$root.height(this.$container.outerHeight());
+    this.$container.prepend(this.$root);
+    var self = this;
     for (var name in this.icons) {
       var icon = this.icons[name];
       var rotation = Helpers.getRandomRotation();
@@ -151,8 +153,8 @@
       for (var idx = 0; idx < clusters.length; idx++) {
         var cluster = clusters[idx];
         var pos = {
-          x: parseInt(cluster.x * that.rootWidth),
-          y: parseInt(cluster.y * that.rootHeight)
+          x: parseInt(cluster.x * self.rootWidth),
+          y: parseInt(cluster.y * self.rootHeight)
         };
         // Determine sizeWeight for each icon
         var sizeWeight = cluster.sizeWeight || icon.sizeWeight;
@@ -164,8 +166,8 @@
         // Determine random animations
         var rotationAnimation = cluster.rotationAnimation || "";
         var entranceAnimation = cluster.entranceAnimation || "";
-        var $icon = $(that.generateIcon(this.color, name, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation));
-        that.root.append($icon);
+        var $icon = self.generateIcon(this.color, name, size, pos, rotation, initialAnimation, rotationAnimation, entranceAnimation);
+        self.$root.append($icon);
       }
     }
     return this;

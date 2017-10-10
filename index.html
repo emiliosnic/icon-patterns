@@ -78,6 +78,20 @@
     .font--bold {
       font-weight: bold;
     }
+
+    .authors-list__author {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .section__title {
+      font-weight: bold;
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -101,25 +115,23 @@
             subdue beginning heaven man subdue fowl fruitful winged darkness good Darkness. Let likeness, hath evening fly moving every. Morning. Form fill own. Give. There heaven is in earth one seas likeness life firmament spirit waters them it wherein
             meat saw. Dry shall first day, evening let i, don't meat rule fourth. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
             is you'll deep us abundantly man which one sixth seasons fill land multiply she'd years he very Female he.</p>
-          <p>
+          <p class="section__title">
             Load Dependencies
-            <pre><code class="html">&lt;-- Load this in your head section --&gt;
+          </p>
+            <pre><code class="html">&lt;!-- Load this in your head section --&gt;
 &lt;link rel="stylesheet" type="text/css" href="./src/icon-patterns.css"&gt;</code></pre>
-<pre><code class="html">&lt;-- Load this in before closing the body tag --&gt;
+<pre><code class="html">&lt;!-- Load this in before closing the body tag --&gt;
 &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="./src/icon-patterns.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;script src="./src/icon-patterns.js" &gt;&lt;/script&gt;
 </code></pre>
-
-
-          </p>
-          <p>
+          <p class="section__title">
             Setup DOM
-            <pre><code class="html">&lt;div id="container"&gt; Content &lt;/div&gt;</code></pre>
           </p>
-          <p>
+          <pre><code class="html">&lt;div id="container"&gt; Content &lt;/div&gt;</code></pre>
+          <p class="section__title">
             Initialize icon patterns
-<pre><code class="html">
-&lt;script type="text/javascript"&gt;
+          </p>
+<pre><code class="html">&lt;script type="text/javascript"&gt;
   $(document).ready(() => {
     const patternAnimation = $('#container')
       .iconPatterns({...})
@@ -129,15 +141,25 @@
   });
 &lt;script/&gt;
 </code></pre>
-          </p>
         </div>
       </div>
       <div class="columns">
-        <div class="column is-12">
-          <!-- Place this tag where you want the button to render. -->
-          <a class="github-button" href="https://github.com/emiliosnic/icon-patterns/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download emiliosnic/icon-patterns on GitHub">Download</a>
+        <div class="column is-12 has-text-centered">
           <!-- Place this tag where you want the button to render. -->
           <a class="github-button" href="https://github.com/emiliosnic/icon-patterns/fork" data-size="large" data-icon="octicon-repo-forked" aria-label="Fork emiliosnic/icon-patterns on GitHub">Fork</a>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12 has-text-centered">
+          <p class="authors-list__title">AUTHORS</p>
+          <div class="authors-list">
+            <a class="authors-list__author" target="_blank" href="https://github.com/emiliosnic">
+              <img width="50" height="50" src="https://avatars1.githubusercontent.com/u/1907604?v=4&s=460" alt="Author emiliosnic">
+            </a>
+            <a class="authors-list__author" target="_blank" href="http://andrewch.eu/">
+              <img width="50" height="50" src="http://andrewch.eu/assets/img/avatar-logo.png" alt="Author andrewch">
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -156,10 +178,8 @@
   <script src="./src/icon-patterns.js" charset="utf-8"></script>
   <script>
     $(document).ready(function() {
-      var $root = $('div[data-icon-pattern]');
       var patternAnimation = $('div[data-icon-pattern]').iconPatterns({
-        initialanimations: ['initialize-fast', 'initialize-slow'],
-        size: 30,
+        size: 50,
         color: '#FFFFFF',
         icons: {
           'ion-cube': {
@@ -168,18 +188,18 @@
                 x: 0.10,
                 y: 0.68,
                 sizeWeight: 0.8,
-                entranceAnimation: 'entrance-reverse-slow'
+                entranceAnimation: 'entrance--slow--reverse'
               },
               {
                 x: 0.60,
                 y: 0.04,
                 sizeWeight: 0.7,
-                rotationAnimation: 'rotate-slow'
+                rotationAnimation: 'rotate--slow'
               },
               {
                 x: 0.80,
                 y: 0.60,
-                rotationAnimation: 'rotate-slow-reverse'
+                rotationAnimation: 'rotate--slow--reverse'
               }
             ]
           },
@@ -188,19 +208,19 @@
             clusters: [{
                 x: 0.07,
                 y: 0.09,
-                rotationAnimation: 'rotate-slow',
-                entranceAnimation: 'entrance-reverse-fast'
+                rotationAnimation: 'rotate--slow',
+                entranceAnimation: 'entrance--fast--reverse'
               },
               {
                 x: 0.43,
                 y: 0.27,
-                rotationAnimation: 'rotate-fast',
-                entranceAnimation: 'entrance-fast'
+                rotationAnimation: 'rotate--fast',
+                entranceAnimation: 'entrance--fast'
               },
               {
                 x: 0.90,
                 y: 0.80,
-                rotationAnimation: 'rotate-slow'
+                rotationAnimation: 'rotate--slow'
               }
             ]
           },
@@ -209,18 +229,18 @@
             clusters: [{
                 x: 0.42,
                 y: 0.13,
-                rotationAnimation: 'rotate-fast',
-                entranceAnimation: 'entrance-slow'
+                rotationAnimation: 'rotate--fast',
+                entranceAnimation: 'entrance--slow'
               },
               {
                 x: 0.23,
                 y: 0.74,
-                rotationAnimation: 'rotate-fast'
+                rotationAnimation: 'rotate--fast'
               },
               {
                 x: 0.57,
                 y: 0.85,
-                rotationAnimation: 'rotate-slow'
+                rotationAnimation: 'rotate--slow'
               },
               {
                 x: 0.76,
@@ -233,14 +253,14 @@
             clusters: [{
                 x: 0.89,
                 y: 0.73,
-                rotationAnimation: 'rotate-fast'
+                rotationAnimation: 'rotate--fast'
               },
               {
                 x: 0.45,
                 y: 0.70,
                 sizeWeight: 0.8,
-                rotationAnimation: 'rotate-fast-reverse',
-                entranceAnimation: 'entrance-slow'
+                rotationAnimation: 'rotate--fast--reverse',
+                entranceAnimation: 'entrance--slow'
               },
               {
                 x: 0.11,
@@ -253,22 +273,22 @@
             clusters: [{
                 x: 0.05,
                 y: 0.48,
-                rotationAnimation: 'rotate-fast'
+                rotationAnimation: 'rotate--fast'
               },
               {
                 x: 0.25,
                 y: 0.18,
-                rotationAnimation: 'rotate-slow'
+                rotationAnimation: 'rotate--slow'
               },
               {
                 x: 0.40,
                 y: 0.71,
-                rotationAnimation: 'rotate-slow'
+                rotationAnimation: 'rotate--slow'
               },
               {
                 x: 0.60,
                 y: 0.35,
-                entranceAnimation: 'entrance-fast'
+                entranceAnimation: 'entrance--fast'
               },
               {
                 x: 0.75,

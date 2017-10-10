@@ -14,7 +14,7 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
-@-webkit-keyframes zoom-in-full {
+@-webkit-keyframes zoom-in {
   0% {
     opacity: 0;
     -webkit-transform: scale(0) rotate(-30deg);
@@ -24,7 +24,7 @@
     -webkit-transform: scale(1) rotate(0deg);
     transform: scale(1) rotate(0deg); } }
 
-@keyframes zoom-in-full {
+@keyframes zoom-in {
   0% {
     opacity: 0;
     -webkit-transform: scale(0) rotate(-30deg);
@@ -35,165 +35,110 @@
     transform: scale(1) rotate(0deg); } }
 
 @-webkit-keyframes zoom-out-alternate {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+  0%,
   40% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); }
-  50% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
+  50%,
   80% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); }
+  100%,
   90% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
-  100% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
 @keyframes zoom-out-alternate {
-  0% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+  0%,
   40% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); }
-  50% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
+  50%,
   80% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); }
+  100%,
   90% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
-  100% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
 @-webkit-keyframes zoom-out-alternate-reverse {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
+  0%,
   20% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); }
-  30% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+  30%,
   70% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); }
+  100%,
   80% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
-  100% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); } }
 
 @keyframes zoom-out-alternate-reverse {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
+  0%,
   20% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); }
-  30% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+  30%,
   70% {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); }
+  100%,
   80% {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0); }
-  100% {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0); } }
 
-div[data-icon-pattern] {
-  position: relative; }
-
-div[data-icon-pattern] .icon-pattern-animation {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0; }
-
-.icon-pattern-animation .initial-animation-wrapper {
+.icon-patterns__overlay .icon-patterns__animations__initial {
   -webkit-transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: absolute; }
+  .icon-patterns__overlay .icon-patterns__animations__initial.initialize--slow {
+    -webkit-animation: zoom-in 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+    animation: zoom-in 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both; }
+  .icon-patterns__overlay .icon-patterns__animations__initial.initialize--fast {
+    -webkit-animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
+    animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both; }
 
-.icon-pattern-animation .initial-animation-wrapper.initialize-slow {
-  -webkit-animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-  animation: zoom-in-full 2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both; }
-
-.icon-pattern-animation .initial-animation-wrapper.initialize-fast {
-  -webkit-animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
-  animation: zoom-in-full 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both; }
-
-.icon-pattern-animation .entrance-animation-wrapper {
+.icon-patterns__overlay .icon-patterns__animations__entrance {
   display: inline-block; }
+  .icon-patterns__overlay .icon-patterns__animations__entrance.entrance--fast {
+    -webkit-animation: zoom-out-alternate 8s ease-in-out infinite both;
+    animation: zoom-out-alternate 8s ease-in-out infinite both; }
+  .icon-patterns__overlay .icon-patterns__animations__entrance.entrance--slow {
+    -webkit-animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
+    animation: zoom-out-alternate 15s ease-in-out 3s infinite both; }
+  .icon-patterns__overlay .icon-patterns__animations__entrance.entrance--fast--reverse {
+    -webkit-animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
+    animation: zoom-out-alternate-reverse 8s ease-in-out infinite; }
+  .icon-patterns__overlay .icon-patterns__animations__entrance.entrance--slow--reverse {
+    -webkit-animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
+    animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both; }
 
-.icon-pattern-animation .entrance-animation-wrapper.entrance-fast {
-  -webkit-animation: zoom-out-alternate 8s ease-in-out infinite both;
-  animation: zoom-out-alternate 8s ease-in-out infinite both; }
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-slow {
-  -webkit-animation: zoom-out-alternate 15s ease-in-out 3s infinite both;
-  animation: zoom-out-alternate 15s ease-in-out 3s infinite both; }
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-fast {
-  -webkit-animation: zoom-out-alternate-reverse 8s ease-in-out infinite;
-  animation: zoom-out-alternate-reverse 8s ease-in-out infinite; }
-
-.icon-pattern-animation .entrance-animation-wrapper.entrance-reverse-slow {
-  -webkit-animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both;
-  animation: zoom-out-alternate-reverse 15s ease-in-out 3s infinite both; }
-
-.icon-pattern-animation i {
+.icon-patterns__overlay > i {
   display: inline-block; }
-
-.icon-pattern-animation i.rotate-slow {
-  -webkit-animation: rotate 20s linear infinite both;
-  animation: rotate 20s linear infinite both; }
-
-.icon-pattern-animation i.rotate-fast {
-  -webkit-animation: rotate 20s linear infinite both;
-  animation: rotate 20s linear infinite both; }
-
-.icon-pattern-animation i.rotate-slow-reverse {
-  -webkit-animation: rotate 20s linear infinite both reverse;
-  animation: rotate 20s linear infinite both reverse; }
-
-.icon-pattern-animation i.rotate-fast-reverse {
-  -webkit-animation: rotate 20s linear infinite both reverse;
-  animation: rotate 20s linear infinite both reverse; }
+  .icon-patterns__overlay > i.rotate--slow {
+    -webkit-animation: rotate 20s linear infinite both;
+    animation: rotate 20s linear infinite both; }
+  .icon-patterns__overlay > i.rotate--fast {
+    -webkit-animation: rotate 20s linear infinite both;
+    animation: rotate 20s linear infinite both; }
+  .icon-patterns__overlay > i.rotate--slow--reverse {
+    -webkit-animation: rotate 20s linear infinite both reverse;
+    animation: rotate 20s linear infinite both reverse; }
+  .icon-patterns__overlay > i.rotate--fast--reverse {
+    -webkit-animation: rotate 20s linear infinite both reverse;
+    animation: rotate 20s linear infinite both reverse; }

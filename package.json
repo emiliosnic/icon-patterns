@@ -2,9 +2,9 @@
   "name": "icon-patterns",
   "version": "0.0.10",
   "description": "Animated icon-pattern background for webpages",
-  "main": "src/main.js",
-  "jsnext:main": "main.mjs",
-  "browser": "main.browser.js",
+  "main": "src/icon-patterns.js",
+  "jsnext:main": "src/icon-patterns.js",
+  "browser": "src/icon-patterns.js",
   "scripts": {
     "start": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build",
