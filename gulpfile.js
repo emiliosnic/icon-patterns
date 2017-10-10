@@ -5,6 +5,8 @@ const del = require("del");
 const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
+const sass = require("gulp-sass");
+const autoprefixer = require("gulp-autoprefixer");
 
 gulp.task("clean-js", "Clean js assets", () => {
   return del("icon-patterns.min.js");
@@ -15,10 +17,16 @@ gulp.task("clean-css", "Clean css assets", () => {
 });
 
 gulp.task("build-css", "Minify css assets", ["clean-css"], () => {
-  return gulp.src("src/icon-patterns.css")
+  return gulp.src("./src/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(autoprefixer({
+        browsers: ["last 2 versions"],
+        cascade: false
+    }))
+    .pipe(gulp.dest("./src"))
     .pipe(cleanCSS({compatibility: "ie8"}))
     .pipe(rename({ suffix: ".min" }))
-    .pipe(gulp.dest(__dirname + "/src"));
+    .pipe(gulp.dest("./src"));
 });
 
 gulp.task("build-js", "Minify js assets", ["clean-js"], () => {
@@ -29,13 +37,13 @@ gulp.task("build-js", "Minify js assets", ["clean-js"], () => {
       this.emit("end");
     })
     .pipe(rename({ suffix: ".min" }))
-    .pipe(gulp.dest(__dirname + "/src"));
+    .pipe(gulp.dest("./src"));
 });
 
-gulp.task("watch", "Watch for changes!", () => {
+gulp.task("watch", "Watch for changes", () => {
   gulp.watch("src/**.js", ["build-js"]);
-  gulp.watch("src/**.css", ["build-css"]);
+  gulp.watch("src/**.scss", ["build-css"]);
 });
 
-gulp.task("default", "The default task.", ["watch"]);
+gulp.task("default", "The default task", ["watch"]);
 gulp.task("build", "The build task.", ["build-js", "build-css"]);
