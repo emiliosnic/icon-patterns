@@ -2,11 +2,11 @@
 
 Animated icon-pattern background for webpages
 
-[![codecov](https://img.shields.io/codecov/c/github/emiliosnic/icon-patterns.svg)]() [![Github file size](https://img.shields.io/github/size/emiliosnic/icon-patterns/dist/icon-patterns.min.js.svg)]() [![apm](https://img.shields.io/apm/l/vim-mode.svg)]()  [![David](https://img.shields.io/david/emiliosnic/icon-patterns.svg)]() [![David](https://img.shields.io/david/dev/emiliosnic/icon-patterns.svg)]() [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![codecov](https://img.shields.io/codecov/c/github/emiliosnic/icon-patterns.svg)]()[![Github file size](https://img.shields.io/github/size/emiliosnic/icon-patterns/dist/icon-patterns.min.js.svg)]() [![apm](https://img.shields.io/apm/l/vim-mode.svg)]()  [![David](https://img.shields.io/david/emiliosnic/icon-patterns.svg)]() [![David](https://img.shields.io/david/dev/emiliosnic/icon-patterns.svg)]() [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
- <div align="center"> <h3>Live Demo & Instructions</h3><p>https://emiliosnic.github.io/icon-patterns</p>
-   [![Preview](http://user-images.githubusercontent.com/1907604/31371508-0a697fd0-ad46-11e7-9005-1af0f41d88a6.jpg)](https://emiliosnic.github.io/icon-patterns)
- </div>
+<div align="center"> <h3>Live Demo &   Instructions</h3><p>https://emiliosnic.github.io/icon-patterns</p>
+<img src="https://image.ibb.co/kveSJw/icon_patterns.jpg" width="800" />
+</div>
 
 ### Development Guidelines
 
