@@ -8,6 +8,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * @namespace IconPatterns
  */
 (function (factory) {
+  /* istanbul ignore next */
   if (typeof define === "function" && define.amd) {
     // AMD import
     define(["jquery"], factory);
@@ -51,7 +52,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @namespace IconPatterns.Helpers
    * @memberof IconPatterns
-   * @return {Object}
+   * @returns {object}
    */
   var Helpers = {
     /**
@@ -59,7 +60,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      *
      * @method Helpers.getRandomRotation
      * @memberof IconPatterns
-     * @return {number} degrees
+     * @returns {number} degrees
      */
     getRandomRotation: function getRandomRotation() {
       return Math.round(Math.random() * 360) + 1;
@@ -70,9 +71,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      *
      * @method Helpers.getRandomNumber
      * @memberof IconPatterns
-     * @param {number} min
-     * @param {number} max
-     * @return {number}
+     * @param {number} min  - Min value allowed
+     * @param {number} max  - Max value allowed
+     * @returns {number}
      */
     getRandomNumber: function getRandomNumber(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
@@ -83,23 +84,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      *
      * @method Helpers.getRandomItemFrom
      * @memberof IconPatterns
-     * @param {array}
-     * @return {any} item
+     * @param {array}  - The base array from which the item will be extracted
+     * @returns {*} item
      */
     getRandomItemFrom: function getRandomItemFrom(arr) {
       return arr[Helpers.getRandomNumber(0, arr.length)];
     },
 
     /**
-     * Returns random position within a width, height of a container
+     * Returns random position within a region
      *
      * @method Helpers.getRandomPosition
      * @memberof IconPatterns
-     * @param {number} width
-     * @param {number} height
-     * @return {object} pos
-     * @return {number} pos.x
-     * @return {number} pos.y
+     * @param {number} width     - X axis size
+     * @param {number} height    - Y axis size
+     * @returns {object} pos     - Random position
+     * @returns {number} pos.x   - Random position X offset
+     * @returns {number} pos.y   - Random position Y offset
      */
     getRandomPosition: function getRandomPosition(width, height) {
       return {
@@ -115,9 +116,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @constructor
    * @memberof IconPatterns
-   * @param {jQuery} $container
-   * @param {object} config
-   * @return {PatternInstance}
+   * @param {jQuery} $container    - The jQuery object where the overlay will be applied
+   * @param {object} config        - Configuration properties
+   * @param {array} config.icons   - The icon properties to use
+   * @param {string} config.color  - The icon color to use
+   * @returns {PatternInstance}
    */
   function PatternInstance($container) {
     var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -140,20 +143,22 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @method generateIcon
    * @memberof IconPatterns.PatternInstance
-   * @param {string} name
-   * @param {number} size
-   * @param {object} pos
-   * @param {number} rotation
-   * @param {object} animations
-   * @param {string} animations.initial
-   * @param {string} animations.expand
-   * @param {string} animations.rotate
-   * @return {jquery} icon
+   * @param {string} name                - Icon name tag
+   * @param {string} size                - Icon size (in px)
+   * @param {string} pos                 - Icon position
+   * @param {number} pos.x               - X axis offset
+   * @param {number} pos.y               - Y axis offset
+   * @param {number} rotation            - Icon rotation (in degrees 0 - 360)
+   * @param {object} animations          - The available set of animations to use
+   * @param {string} animations.initial  - Animation set for initial behaviour
+   * @param {string} animations.expand   - Animation set for expansion behaviour
+   * @param {string} animations.rotate   - Animation set for rotation behaviour
+   * @returns {jquery} icon
    */
   PatternInstance.prototype.generateIcon = function (color, className, size, pos, rotation, animations) {
     var iconStyle = ["font-size: " + size + "px", "color: " + color];
     var spanStyle = ["left: " + pos.x + "px", "top: " + pos.y + "px", "-webkit-transform: rotate(" + rotation + "deg)", "-MS-transform: rotate(" + rotation + "deg)", "transform: rotate(" + rotation + "deg)"];
-    return $("<span class='icon-patterns__animations__initial " + animations.initial + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__entrance " + animations.expand + "'> <i class='" + [className, animations.rotate].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
+    return $("<span class='icon-patterns__animations__initial " + animations.initial + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__expand " + animations.expand + "'> <i class='" + [className, animations.rotate].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
   };
 
   /**
@@ -161,9 +166,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @method generateOverlay
    * @memberof IconPatterns.PatternInstance
-   * @return {number} width
-   * @return {number} height
-   * @return {jquery} overlay
+   * @returns {number} width    - The parent container width
+   * @returns {number} height   - The parent container height
+   * @returns {jquery} overlay
    */
   PatternInstance.prototype.generateOverlay = function (width, height) {
     var $overlay = $("<div class='icon-patterns__overlay'></div>");
@@ -183,16 +188,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @method draw
    * @memberof IconPatterns.PatternInstance
-   * @return {IconPatterns.PatternInstance}
+   * @returns {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.draw = function () {
     var _this = this;
 
     var ANIMATIONS = $.iconPatterns.ANIMATIONS;
-    // const containerWidth = this.width;
-    // const containerHeight = this.height;
-    // this.$overlay = this.generateOverlay(containerWidth, containerHeight);
-    // this.$container.prepend(this.$overlay);
     Object.entries(this.icons).forEach(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),
           iconName = _ref2[0],
@@ -223,15 +224,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   /**
    * Attaches IconPatern to jQuery namespace
-   * @ignore
+   * @private
    */
   $.extend($.fn, {
     /**
      * Retunns a new PatternInstance for a given configuration
      *
      * @method IconPatterns
-     * @param {object} config
-     * @return {PatternInstance}
+     * @param {object} config        - Configuration properties
+     * @param {array} config.icons   - The icon properties to use
+     * @param {string} config.color  - The icon color to use
+     * @returns {PatternInstance}
      */
     IconPatterns: function IconPatterns(config) {
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));

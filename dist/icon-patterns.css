@@ -116,24 +116,24 @@
     -webkit-animation: zoom-in 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both;
     animation: zoom-in 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) 400ms both; }
 
-.icon-patterns__overlay .icon-patterns__animations__entrance {
+.icon-patterns__overlay .icon-patterns__animations__expand {
   display: inline-block; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand {
     -webkit-animation: expand 2s ease-in-out infinite both;
     animation: expand 2s ease-in-out infinite both; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand--fast {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand--fast {
     -webkit-animation: expand 1s ease-in-out infinite both;
     animation: expand 1s ease-in-out infinite both; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand--slow {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand--slow {
     -webkit-animation: expand 3s ease-in-out infinite both;
     animation: expand 3s ease-in-out infinite both; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand--reverse {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand--reverse {
     -webkit-animation: expand-reverse 2s ease-in-out infinite;
     animation: expand-reverse 2s ease-in-out infinite; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand--reverse--fast {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand--reverse--fast {
     -webkit-animation: expand-reverse 1s ease-in-out infinite;
     animation: expand-reverse 1s ease-in-out infinite; }
-  .icon-patterns__overlay .icon-patterns__animations__entrance.expand--reverse--slow {
+  .icon-patterns__overlay .icon-patterns__animations__expand.expand--reverse--slow {
     -webkit-animation: expand-reverse 3s ease-in-out infinite both;
     animation: expand-reverse 3s ease-in-out infinite both; }
 

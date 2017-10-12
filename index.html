@@ -147,18 +147,22 @@
           <pre><code class="html">&lt;div id="container"&gt; We've created Icon Patterns &lt;/div&gt;</code></pre>
           </h3>
           <p class="section__title">
-            Configure Icon Patterns
+            Configure Icon patterns
+          </p>
+          <p>
+            Include the name prefixes as described in the font icon set that you have imported.  
           </p>
 <pre><code class="js">$('#container').IconPatterns({
   color: '#FFFFFF',
   icons: [{
-    name: 'ion-erlenmeyer-flask',
-    count: 15,
-    sizeVariation: [20, 50],
-  },{
-    name: 'ion-cube',
-    count: 10,
-    sizeVariation: [40, 80],
+    'ion-cube': {
+      count: 10,
+      sizeVariation: [10, 30],
+    },
+    'ion-erlenmeyer-flask': {
+      count: 15,
+      sizeVariation: [5, 20],
+    }]
   }]
 }).draw();</code></pre>
 </div>
@@ -173,7 +177,7 @@
         <div class="column is-12 has-text-centered">
           <p class="authors-list__title">AUTHORS</p>
           <div class="authors-list">
-            <a class="authors-list__author" target="_blank" href="https://github.com/emiliosnic">
+            <a class="authors-list__author" target="_blank" href="https://emiliosnic.github.io/">
               <img width="50" height="50" src="https://avatars1.githubusercontent.com/u/1907604?v=4&s=460" alt="Author emiliosnic">
             </a>
             <a class="authors-list__author" target="_blank" href="http://andrewch.eu/">
@@ -197,19 +201,6 @@
 
   <script src="./dist/icon-patterns.js" charset="utf-8"></script>
   <script>
-  //   $(document).ready(() => {
-  //   const patternAnimation = $('#container').IconPatterns({
-  //     color: '#FFFFFF',
-  //     icons: [
-  //       {name: 'ion-erlenmeyer-flask'},
-  //       {name: 'ion-fireball',
-  //         count: 10,
-  //         sizeVariation: [40, 80],
-  //         animations: [ANIMATIONS.ROTATE, ANIMATIONS.EXPAND_FAST]
-  //       }
-  //     ]
-  //   }).draw();
-  // });
     $(document).ready(function() {
       $('div[data-icon-pattern]').IconPatterns({
         color: '#FFFFFF',
@@ -222,10 +213,6 @@
             count: 15,
             sizeVariation: [5, 20],
           },
-          'ion-heart': {
-            count: 20,
-            sizeVariation: [8, 15],
-          }
         }}).draw();
     });
   </script>
