@@ -119,40 +119,48 @@
         <div class="column is-12">
           <p>Had form whales land open evening. Behold said. Give air living make whose above i they're winged place forth creeping herb creeping moved second the behold male give tree, have, above fourth gathered called
             is you'll deep us abundantly man which one sixth seasons fill land multiply she'd years he very Female he.</p>
+            <p class="section__title">
+              Import font icons
+            </p>
+            <p>
+              Import the font icons you want. In this example we are using <a href="http://ionicons.com/">Ionicons.com</a>.
+            </p>
+<pre><code class="html">&lt;!-- Load the icon set that you will be using in the HEAD section --&gt;
+&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" &gt;
+</code>
+</pre>
           <p class="section__title">
             Load Dependencies
           </p>
-            <pre><code class="html">&lt;!-- Load this in your head section --&gt;
+<pre><code class="html">&lt;!-- Load this in your head section --&gt;
+&lt;!-- IconPatterns import --&gt;
 &lt;link rel="stylesheet" type="text/css" href="./dist/icon-patterns.css"&gt;</code></pre>
-<pre><code class="html">&lt;!-- Load the icon set that you will be using, ie ionicons --&gt;
-&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" &gt;
-
-&lt;!-- Load this in before closing the body tag --&gt;
+<pre><code class="html">&lt;!-- Load this in before closing the body tag --&gt;
+&lt;!-- jQuery import --&gt;
 &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
+&lt;!-- IconPatterns import --&gt;
 &lt;script src="./dist/icon-patterns.min.js" &gt;&lt;/script&gt;
 </code></pre>
           <p class="section__title">
             Setup DOM
           </p>
-          <pre><code class="html">&lt;div id="container"&gt; We've created Icon Patternsz &lt;/div&gt;</code></pre>
+          <pre><code class="html">&lt;div id="container"&gt; We've created Icon Patterns &lt;/div&gt;</code></pre>
           </h3>
           <p class="section__title">
-            Initialize icon patterns
+            Configure Icon Patterns
           </p>
-<pre><code class="js">$(document).ready(() => {
-  const patternAnimation = $('#container').IconPatterns({
-    color: '#FFFFFF',
-    icons: [{
-      name: 'ion-erlenmeyer-flask',
-      count: 15,
-      sizeVariation: [20, 50],
-    },{
-      name: 'ion-cube',
-      count: 10,
-      sizeVariation: [40, 80],
-    }]
-  }).draw();
-});</code></pre>
+<pre><code class="js">$('#container').IconPatterns({
+  color: '#FFFFFF',
+  icons: [{
+    name: 'ion-erlenmeyer-flask',
+    count: 15,
+    sizeVariation: [20, 50],
+  },{
+    name: 'ion-cube',
+    count: 10,
+    sizeVariation: [40, 80],
+  }]
+}).draw();</code></pre>
 </div>
       </div>
       <div class="columns">

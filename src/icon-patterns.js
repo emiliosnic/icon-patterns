@@ -179,10 +179,6 @@
    */
   PatternInstance.prototype.draw = function() {
     const ANIMATIONS = $.iconPatterns.ANIMATIONS;
-    // const containerWidth = this.width;
-    // const containerHeight = this.height;
-    // this.$overlay = this.generateOverlay(containerWidth, containerHeight);
-    // this.$container.prepend(this.$overlay);
     Object.entries(this.icons).forEach(([iconName, iconProperties]) => {
       const {
         sizeVariation,
