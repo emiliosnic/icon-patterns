@@ -11,7 +11,7 @@
     "pretest": "./node_modules/.bin/eslint -- ./src ./tests --config --ext .js",
     "test": "./node_modules/.bin/tape tests/**/*.spec.js",
     "documentation": "./node_modules/.bin/jsdoc ./src/** --configure jsdoc.json --readme README.md --recurse",
-    "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape"
+    "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape --report lcovonly -- -R spec && ./node_modules/.bin/codecov --token=ca1c25fe-8035-4e5a-9a23-41467ae8e8d8"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "codecov": "^2.3.0",
     "eslint": "^4.8.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
