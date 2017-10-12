@@ -15,12 +15,17 @@ Install the required dependencies
 npm install
 ```
 
-To build the library use
+To setup a watch task to rebuild on change use
+
+```
+npm start
+```
+
+To build the library once use
 
 ```
 npm run build
 ```
-
 
 ### Tests & Coverage
 

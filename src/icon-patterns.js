@@ -77,6 +77,22 @@
      */
     getRandomItemFrom: (arr) => arr[Helpers.getRandomNumber(0, arr.length)],
 
+    /**
+     * Returns random position within a width, height of a container
+     *
+     * @method Helpers.getRandomPosition
+     * @memberof IconPatterns
+     * @param {number} width
+     * @param {number} height
+     * @return {object} pos
+     * @return {number} pos.x
+     * @return {number} pos.y
+     */
+    getRandomPosition: (width, height) => ({
+      x: parseInt(Math.random() * width),
+      y: parseInt(Math.random() * height)
+    }),
+
   };
 
   /**
@@ -94,8 +110,12 @@
     }
     this.color = config.color;
     this.icons = config.icons;
+    this.width = $container.outerWidth();
+    this.height = $container.outerHeight();
+    this.$overlay = this.generateOverlay(this.width, this.height);
     this.$container = $container;
-    this.$container.css("position", "relative")
+    this.$container.css("position", "relative");
+    this.$container.prepend(this.$overlay);
   }
 
   /**
@@ -107,21 +127,25 @@
    * @param {number} size
    * @param {object} pos
    * @param {number} rotation
+   * @param {object} animations
+   * @param {string} animations.initial
+   * @param {string} animations.expand
+   * @param {string} animations.rotate
    * @return {jquery} icon
    */
-  PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, initialAnimation, rotationAnimation, expandAnimation) {
-    var iconStyle = [
-      "font-size: " + size + "px",
-      "color: " + color
+  PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, animations) {
+    const iconStyle = [
+      `font-size: ${size}px`,
+      `color: ${color}`
     ];
-    var spanStyle = [
-      "left: " + pos.x + "px",
-      "top:" + pos.y + "px",
-      "-webkit-transform: rotate(" + rotation + "deg)",
-      "-MS-transform: rotate(" + rotation + "deg)",
-      "transform: rotate(" + rotation + "deg)"
+    const spanStyle = [
+      `left: ${pos.x}px`,
+      `top: ${pos.y}px`,
+      `-webkit-transform: rotate(${rotation}deg)`,
+      `-MS-transform: rotate(${rotation}deg)`,
+      `transform: rotate(${rotation}deg)`
     ];
-    return $("<span class='icon-patterns__animations__initial " + initialAnimation + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__entrance " + expandAnimation + "'> <i class='" + [className, rotationAnimation].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
+    return $("<span class='icon-patterns__animations__initial " + animations.initial + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__entrance " + animations.expand + "'> <i class='" + [className, animations.rotate].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
   };
 
   /**
@@ -129,30 +153,21 @@
    *
    * @method generateOverlay
    * @memberof IconPatterns.PatternInstance
+   * @return {number} width
+   * @return {number} height
    * @return {jquery} overlay
    */
-  PatternInstance.prototype.generateOverlay = function() {
-    var $element = $("<div class='icon-patterns__overlay'></div>");
-    $element.css({
+  PatternInstance.prototype.generateOverlay = function(width, height) {
+    const $overlay = $("<div class='icon-patterns__overlay'></div>");
+    $overlay.width(width);
+    $overlay.height(height);
+    $overlay.css({
       "position": "absolute",
       "z-index": 1,
       "top": 0,
       "left": 0
     });
-    return $element;
-  }
-
-  /**
-   * Redreaw a canvas scene
-   *
-   * @method redraw
-   * @memberof IconPatterns.PatternInstance
-   * @return {IconPatterns.PatternInstance}
-   */
-  PatternInstance.prototype.redraw = function() {
-    this.$overlay.remove();
-    this.draw();
-    return this;
+    return $overlay;
   };
 
   /**
@@ -164,32 +179,32 @@
    */
   PatternInstance.prototype.draw = function() {
     const ANIMATIONS = $.iconPatterns.ANIMATIONS;
-    const containerWidth = this.$container.outerWidth();
-    const containerHeight = this.$container.outerHeight();
-    this.$overlay = this.generateOverlay();
-    this.$overlay.width(containerWidth);
-    this.$overlay.height(containerHeight);
-    this.$container.prepend(this.$overlay);
-    for (var name in this.icons) {
-      const icon = this.icons[name];
-      const rotation = Helpers.getRandomRotation();
-      for (let idx = 0; idx < icon.count; idx++) {
-        const pos = {
-          x: parseInt(Math.random() * containerWidth),
-          y: parseInt(Math.random() * containerHeight)
-        };
+    // const containerWidth = this.width;
+    // const containerHeight = this.height;
+    // this.$overlay = this.generateOverlay(containerWidth, containerHeight);
+    // this.$container.prepend(this.$overlay);
+    Object.entries(this.icons).forEach(([iconName, iconProperties]) => {
+      const {
+        sizeVariation,
+        count,
+      } = iconProperties;
+      // Attach icons
+      Array.from(Array(count)).forEach(() => {
+        // Generate a random position for each icon
+        const rotation = Helpers.getRandomRotation();
+        const pos = Helpers.getRandomPosition(this.width, this.height);
         // Determine sizeWeight for each icon
-        const size = Helpers.getRandomNumber(icon.sizeVariation[0], icon.sizeVariation[1]);
-        // Determine initial animation for all icons
-        const initialAnimation = Helpers.getRandomItemFrom(ANIMATIONS.INITIALIZE);
-        // Determine animations
-        const rotationAnimation = Helpers.getRandomItemFrom(ANIMATIONS.ROTATE);
-        const expandAnimation = Helpers.getRandomItemFrom(ANIMATIONS.EXPAND);
+        const size = Helpers.getRandomNumber(sizeVariation[0], sizeVariation[1]);
+        // Determine animation styles
+        const animations = {
+          initial: Helpers.getRandomItemFrom(ANIMATIONS.INITIALIZE),
+          rotate: Helpers.getRandomItemFrom(ANIMATIONS.ROTATE),
+          expand: Helpers.getRandomItemFrom(ANIMATIONS.EXPAND),
+        };
         // Generate and append icon
-        const $icon = this.generateIcon(this.color, name, size, pos, rotation, initialAnimation, rotationAnimation, expandAnimation);
-        this.$overlay.append($icon);
-      }
-    }
+        this.$overlay.append(this.generateIcon(this.color, iconName, size, pos, rotation, animations));
+      });
+    });
     return this;
   };
 

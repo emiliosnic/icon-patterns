@@ -129,12 +129,12 @@
 
 &lt;!-- Load this in before closing the body tag --&gt;
 &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="./dist/icon-patterns.js" &gt;&lt;/script&gt;
+&lt;script src="./dist/icon-patterns.min.js" &gt;&lt;/script&gt;
 </code></pre>
           <p class="section__title">
             Setup DOM
           </p>
-          <pre><code class="html">&lt;div id="container"&gt; Content &lt;/div&gt;</code></pre>
+          <pre><code class="html">&lt;div id="container"&gt; We've created Icon Patternsz &lt;/div&gt;</code></pre>
           </h3>
           <p class="section__title">
             Initialize icon patterns
@@ -142,29 +142,18 @@
 <pre><code class="js">$(document).ready(() => {
   const patternAnimation = $('#container').IconPatterns({
     color: '#FFFFFF',
-    icons: [
-    {
-      // Required name
+    icons: [{
       name: 'ion-erlenmeyer-flask',
-    }, {
-      // Or you can customize in depth
+      count: 15,
+      sizeVariation: [20, 50],
+    },{
       name: 'ion-cube',
       count: 10,
       sizeVariation: [40, 80],
     }]
   }).draw();
-
-  // Bind redraw event on resize
-  window.onresize = () => patternAnimation.redraw();
 });</code></pre>
-<p class="section__title">
-  Examples
-</p>
-<ul>
-  <li>LINK TO EXAMPLES 1</li>
-  <li>LINK TO EXAMPLES 2</li>
-</ul>
-        </div>
+</div>
       </div>
       <div class="columns">
         <div class="column is-12 has-text-centered">
@@ -214,8 +203,7 @@
   //   }).draw();
   // });
     $(document).ready(function() {
-      var patternAnimation = $('div[data-icon-pattern]').IconPatterns({
-        // size: 50,
+      $('div[data-icon-pattern]').IconPatterns({
         color: '#FFFFFF',
         icons: {
           'ion-cube': {
@@ -230,12 +218,7 @@
             count: 20,
             sizeVariation: [8, 15],
           }
-        }
-      });
-      patternAnimation.draw();
-      window.onresize = function(event) {
-        patternAnimation.redraw();
-      }
+        }}).draw();
     });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>

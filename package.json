@@ -1,6 +1,6 @@
 {
   "name": "icon-patterns",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Animated icon-pattern background for webpages",
   "main": "dist/icon-patterns.js",
   "jsnext:main": "dist/icon-patterns.js",
