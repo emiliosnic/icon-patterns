@@ -1,4 +1,4 @@
-$rotate-duration: 10s;
+$rotate-duration: 15s;
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -8,7 +8,7 @@ $rotate-duration: 10s;
     transform: rotate(360deg);
   }
 }
-$zoom-in-duration: 8s;
+$zoom-in-duration: 15s;
 @keyframes zoom-in {
   0% {
     opacity: 0;
@@ -20,7 +20,7 @@ $zoom-in-duration: 8s;
     transform: scale(1) rotate(0deg);
   }
 }
-$expand-duration: 12s;
+$expand-duration: 15s;
 @keyframes expand {
   0%,
   40% {

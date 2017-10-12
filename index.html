@@ -9,7 +9,7 @@
   <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./src/icon-patterns.css">
+  <link rel="stylesheet" type="text/css" href="./dist/icon-patterns.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <style>
@@ -123,13 +123,13 @@
             Load Dependencies
           </p>
             <pre><code class="html">&lt;!-- Load this in your head section --&gt;
-&lt;link rel="stylesheet" type="text/css" href="./src/icon-patterns.css"&gt;</code></pre>
+&lt;link rel="stylesheet" type="text/css" href="./dist/icon-patterns.css"&gt;</code></pre>
 <pre><code class="html">&lt;!-- Load the icon set that you will be using, ie ionicons --&gt;
 &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" &gt;
 
 &lt;!-- Load this in before closing the body tag --&gt;
 &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="./src/icon-patterns.js" &gt;&lt;/script&gt;
+&lt;script src="./dist/icon-patterns.js" &gt;&lt;/script&gt;
 </code></pre>
           <p class="section__title">
             Setup DOM
@@ -143,49 +143,20 @@
   const patternAnimation = $('#container').IconPatterns({
     color: '#FFFFFF',
     icons: [
-      {name: 'ion-erlenmeyer-flask'},
-      {name: 'ion-fireball'}
-    ]
-  }).draw();
-});</pre></code>
-          <p class="section__title">
-            Customize icons and animations
-          </p>
-<pre><code class="js">$(document).ready(() => {
-  const ANIMATIONS = $.IconPatterns.ANIMATIONS;
-  const patternAnimation = $('#container').IconPatterns({
-    color: '#FFFFFF',
-    icons: [
     {
       // Required name
       name: 'ion-erlenmeyer-flask',
-    }, {
-      // You can optionally define the animation styles you want
-      name: 'ion-fireball',
-      animations: [ANIMATIONS.ROTATE_SLOW, ANIMATIONS.EXPAND]
     }, {
       // Or you can customize in depth
       name: 'ion-cube',
       count: 10,
       sizeVariation: [40, 80],
-      animations: [ANIMATIONS.ROTATE, ANIMATIONS.EXPAND_FAST]
     }]
   }).draw();
 
   // Bind redraw event on resize
   window.onresize = () => patternAnimation.redraw();
 });</code></pre>
-<p class="section__title">
-  Available animation styles
-</p>
-<pre><code class="js">const ANIMATIONS = $.IconPatterns.ANIMATIONS;
-ANIMATIONS.ROTATE
-ANIMATIONS.ROTATE_SLOW
-ANIMATIONS.ROTATE_FAST
-ANIMATIONS.EXPAND
-ANIMATIONS.EXPAND_SLOW
-ANIMATIONS.EXPAND_FAST
-</code></pre>
 <p class="section__title">
   Examples
 </p>
@@ -227,131 +198,37 @@ ANIMATIONS.EXPAND_FAST
   <!-- Load IconPatterns script -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-  <script src="./src/icon-patterns.js" charset="utf-8"></script>
+  <script src="./dist/icon-patterns.js" charset="utf-8"></script>
   <script>
+  //   $(document).ready(() => {
+  //   const patternAnimation = $('#container').IconPatterns({
+  //     color: '#FFFFFF',
+  //     icons: [
+  //       {name: 'ion-erlenmeyer-flask'},
+  //       {name: 'ion-fireball',
+  //         count: 10,
+  //         sizeVariation: [40, 80],
+  //         animations: [ANIMATIONS.ROTATE, ANIMATIONS.EXPAND_FAST]
+  //       }
+  //     ]
+  //   }).draw();
+  // });
     $(document).ready(function() {
       var patternAnimation = $('div[data-icon-pattern]').IconPatterns({
-        size: 50,
+        // size: 50,
         color: '#FFFFFF',
         icons: {
           'ion-cube': {
-            sizeWeight: 1.0,
-            clusters: [{
-                x: 0.10,
-                y: 0.68,
-                sizeWeight: 0.8,
-                entranceAnimation: 'expand--reverse--slow'
-              },
-              {
-                x: 0.60,
-                y: 0.04,
-                sizeWeight: 0.7,
-                rotationAnimation: 'rotate--slow'
-              },
-              {
-                x: 0.80,
-                y: 0.60,
-                rotationAnimation: 'rotate--reverse--slow'
-              }
-            ]
+            count: 10,
+            sizeVariation: [10, 30],
           },
           'ion-erlenmeyer-flask': {
-            sizeWeight: 0.8,
-            clusters: [{
-                x: 0.07,
-                y: 0.09,
-                rotationAnimation: 'rotate--slow',
-                entranceAnimation: 'expand--reverse'
-              },
-              {
-                x: 0.43,
-                y: 0.27,
-                rotationAnimation: 'rotate',
-                entranceAnimation: 'expand-out--fast'
-              },
-              {
-                x: 0.90,
-                y: 0.80,
-                rotationAnimation: 'rotate--slow'
-              }
-            ]
-          },
-          'ion-fireball': {
-            sizeWeight: 0.7,
-            clusters: [{
-                x: 0.42,
-                y: 0.13,
-                rotationAnimation: 'rotate--fast',
-                entranceAnimation: 'expand'
-              },
-              {
-                x: 0.23,
-                y: 0.74,
-                rotationAnimation: 'rotate--fast'
-              },
-              {
-                x: 0.57,
-                y: 0.85,
-                rotationAnimation: 'rotate'
-              },
-              {
-                x: 0.76,
-                y: 0.31
-              }
-            ]
-          },
-          'ion-icecream': {
-            sizeWeight: 0.5,
-            clusters: [{
-                x: 0.89,
-                y: 0.73,
-                rotationAnimation: 'rotate--fast'
-              },
-              {
-                x: 0.45,
-                y: 0.70,
-                sizeWeight: 0.8,
-                rotationAnimation: 'rotate--reverse--fast',
-                entranceAnimation: 'expand--reverse--slow'
-              },
-              {
-                x: 0.11,
-                y: 0.30
-              }
-            ]
+            count: 15,
+            sizeVariation: [5, 20],
           },
           'ion-heart': {
-            sizeWeight: 0.4,
-            clusters: [{
-                x: 0.05,
-                y: 0.48,
-                rotationAnimation: 'rotate--fast'
-              },
-              {
-                x: 0.25,
-                y: 0.18,
-                rotationAnimation: 'rotate--slow'
-              },
-              {
-                x: 0.40,
-                y: 0.71,
-                entranceAnimation: 'expand',
-                rotationAnimation: 'rotate--slow'
-              },
-              {
-                x: 0.60,
-                y: 0.35,
-                entranceAnimation: 'expand--reverse--fast'
-              },
-              {
-                x: 0.75,
-                y: 0.87
-              },
-              {
-                x: 0.90,
-                y: 0.56
-              }
-            ]
+            count: 20,
+            sizeVariation: [8, 15],
           }
         }
       });

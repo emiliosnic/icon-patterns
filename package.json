@@ -2,9 +2,9 @@
   "name": "icon-patterns",
   "version": "0.0.10",
   "description": "Animated icon-pattern background for webpages",
-  "main": "src/icon-patterns.js",
-  "jsnext:main": "src/icon-patterns.js",
-  "browser": "src/icon-patterns.js",
+  "main": "dist/icon-patterns.js",
+  "jsnext:main": "dist/icon-patterns.js",
+  "browser": "dist/icon-patterns.js",
   "scripts": {
     "start": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build",
@@ -28,9 +28,12 @@
     "jquery": ">= 3.0.x"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "eslint": "^4.8.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-help": "^1.6.1",
     "gulp-rename": "^1.2.2",

@@ -7,11 +7,11 @@
   "extra": {
     "component": {
       "scripts": [
-        "src/icon-patterns.js"
+        "dist/icon-patterns.js"
       ],
       "files": [
-        "src/icon-patterns.js",
-        "src/icon-patterns.css"
+        "dist/icon-patterns.js",
+        "dist/icon-patterns.css"
       ]
     }
   }

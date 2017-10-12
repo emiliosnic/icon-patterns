@@ -3,7 +3,7 @@
   "version": "0.0.10",
   "description": "Icon Patterns",
   "homepage": "https://emiliosnic.github.io/icon-patterns",
-  "main": [ "./src/icon-patterns.js", "./src/icon-patterns.css" ],
+  "main": [ "./dist/icon-patterns.js", "./dist/icon-patterns.css" ],
   "dependencies": {
     "jquery": ">= 3.0.x"
   },
