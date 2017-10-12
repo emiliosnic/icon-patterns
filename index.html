@@ -102,7 +102,7 @@
 </head>
 
 <body>
-  <div class="header columns" data-icon-pattern>
+  <div id="container" class="header columns">
     <div class="column has-text-centered">
       <h1 class="color--light font--bold">We've created Icon patterns.</h1>
       <p class="color--light">We’ve tried to create something cool. You are already viewing it in the background. You can download it, too - for free.</p>
@@ -150,7 +150,7 @@
             Configure Icon patterns
           </p>
           <p>
-            Include the name prefixes as described in the font icon set that you have imported.  
+            Include the name prefixes as described in the font icon set that you have imported.
           </p>
 <pre><code class="js">$('#container').IconPatterns({
   color: '#FFFFFF',
@@ -198,11 +198,10 @@
   <!-- .................................... -->
   <!-- Load IconPatterns script -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
   <script src="./dist/icon-patterns.js" charset="utf-8"></script>
   <script>
     $(document).ready(function() {
-      $('div[data-icon-pattern]').IconPatterns({
+      $('#container').IconPatterns({
         color: '#FFFFFF',
         icons: {
           'ion-cube': {

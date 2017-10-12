@@ -34,8 +34,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    * @property {object} ANIMATIONS         - The available animation styles
    */
 
-  var _this2 = this;
-
   $.iconPatterns = {
     DEFAULTS: {
       color: "#FFFFFF"
@@ -241,7 +239,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      */
     IconPatterns: function IconPatterns(config) {
       /* istanbul ignore next */
-      return new PatternInstance($(_this2), Object.assign({}, config, $.iconPatterns.DEFAULTS));
+      return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
   });
 

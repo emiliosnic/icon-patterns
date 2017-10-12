@@ -221,7 +221,7 @@
      * @param {string} config.color  - The icon color to use
      * @returns {PatternInstance}
      */
-    IconPatterns: (config) => {
+    IconPatterns: function(config) {
       /* istanbul ignore next */
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
