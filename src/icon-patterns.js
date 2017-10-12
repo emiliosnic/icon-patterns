@@ -8,12 +8,7 @@
     define(["jquery"], factory);
   } else if (typeof exports === "object") {
     // Node/CommonJS import
-    if (global.window) {
-      module.exports = factory(require("jQuery")(global.window));
-    } else {
-      const JSDOM = require("jsdom").JSDOM;
-      module.exports = factory(require("jQuery")(new JSDOM("<!DOCTYPE html>").window));
-    }
+    module.exports = (window = global.window) => factory(require("jQuery")(window));
   } else {
     // Browser globals
     factory(jQuery);
@@ -101,24 +96,27 @@
    *
    * @constructor
    * @memberof IconPatterns
-   * @param {jQuery} $container    - The jQuery object where the overlay will be applied
+   * @param {jQuery} $target    - The jQuery object where the overlay will be applied
    * @param {object} config        - Configuration properties
    * @param {array} config.icons   - The icon properties to use
    * @param {string} config.color  - The icon color to use
    * @returns {PatternInstance}
    */
-  function PatternInstance($container, config = {}) {
+  function PatternInstance($target, config = {}) {
+    if (!$target || !$target.length) {
+      throw new Error("Missing `target` jQuery instance");
+    }
     if (!config.icons || !Object.keys(config.icons).length) {
       throw new Error("Missing `icons` configuration from config file");
     }
     this.color = config.color;
     this.icons = config.icons;
-    this.width = $container.outerWidth();
-    this.height = $container.outerHeight();
+    this.width = $target.outerWidth();
+    this.height = $target.outerHeight();
     this.$overlay = this.generateOverlay(this.width, this.height);
-    this.$container = $container;
-    this.$container.css("position", "relative");
-    this.$container.prepend(this.$overlay);
+    this.$target = $target;
+    this.$target.css("position", "relative");
+    this.$target.prepend(this.$overlay);
   }
 
   /**
@@ -223,7 +221,8 @@
      * @param {string} config.color  - The icon color to use
      * @returns {PatternInstance}
      */
-    IconPatterns: function(config) {
+    IconPatterns: (config) => {
+      /* istanbul ignore next */
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
   });

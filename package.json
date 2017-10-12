@@ -1,6 +1,6 @@
 {
   "name": "icon-patterns",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Animated icon-pattern background for webpages",
   "main": "dist/icon-patterns.js",
   "jsnext:main": "dist/icon-patterns.js",
@@ -8,10 +8,12 @@
   "scripts": {
     "start": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build",
-    "pretest": "./node_modules/.bin/eslint -- ./src ./tests --config --ext .js",
+    "ssspretest": "./node_modules/.bin/eslint -- ./src ./tests --config --ext .js",
     "test": "./node_modules/.bin/tape tests/**/*.spec.js",
     "documentation": "./node_modules/.bin/jsdoc ./src/** --configure jsdoc.json --readme README.md --recurse",
-    "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape --report lcovonly -- -R spec && ./node_modules/.bin/codecov --token=ca1c25fe-8035-4e5a-9a23-41467ae8e8d8"
+    "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape",
+    "coverage-code-cov": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape --report lcovonly -- -R spec && ./node_modules/.bin/codecov --token=ca1c25fe-8035-4e5a-9a23-41467ae8e8d8",
+    "postpublish": "npm run coverage-code-cov"
   },
   "repository": {
     "type": "git",

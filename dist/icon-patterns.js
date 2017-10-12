@@ -14,12 +14,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     define(["jquery"], factory);
   } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
     // Node/CommonJS import
-    if (global.window) {
-      module.exports = factory(require("jQuery")(global.window));
-    } else {
-      var JSDOM = require("jsdom").JSDOM;
-      module.exports = factory(require("jQuery")(new JSDOM("<!DOCTYPE html>").window));
-    }
+    module.exports = function () {
+      var window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : global.window;
+      return factory(require("jQuery")(window));
+    };
   } else {
     // Browser globals
     factory(jQuery);
@@ -35,6 +33,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    * @property {string} DEFAULTS.color     - The default icon color
    * @property {object} ANIMATIONS         - The available animation styles
    */
+
+  var _this2 = this;
 
   $.iconPatterns = {
     DEFAULTS: {
@@ -116,26 +116,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @constructor
    * @memberof IconPatterns
-   * @param {jQuery} $container    - The jQuery object where the overlay will be applied
+   * @param {jQuery} $target    - The jQuery object where the overlay will be applied
    * @param {object} config        - Configuration properties
    * @param {array} config.icons   - The icon properties to use
    * @param {string} config.color  - The icon color to use
    * @returns {PatternInstance}
    */
-  function PatternInstance($container) {
+  function PatternInstance($target) {
     var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
+    if (!$target || !$target.length) {
+      throw new Error("Missing `target` jQuery instance");
+    }
     if (!config.icons || !Object.keys(config.icons).length) {
       throw new Error("Missing `icons` configuration from config file");
     }
     this.color = config.color;
     this.icons = config.icons;
-    this.width = $container.outerWidth();
-    this.height = $container.outerHeight();
+    this.width = $target.outerWidth();
+    this.height = $target.outerHeight();
     this.$overlay = this.generateOverlay(this.width, this.height);
-    this.$container = $container;
-    this.$container.css("position", "relative");
-    this.$container.prepend(this.$overlay);
+    this.$target = $target;
+    this.$target.css("position", "relative");
+    this.$target.prepend(this.$overlay);
   }
 
   /**
@@ -237,7 +240,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      * @returns {PatternInstance}
      */
     IconPatterns: function IconPatterns(config) {
-      return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
+      /* istanbul ignore next */
+      return new PatternInstance($(_this2), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
   });
 
