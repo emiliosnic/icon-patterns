@@ -8,7 +8,7 @@
   "scripts": {
     "start": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp build",
-    "ssspretest": "./node_modules/.bin/eslint -- ./src ./tests --config --ext .js",
+    "pretest": "./node_modules/.bin/eslint -- ./src ./tests --config --ext .js",
     "test": "./node_modules/.bin/tape tests/**/*.spec.js",
     "documentation": "./node_modules/.bin/jsdoc ./src/** --configure jsdoc.json --readme README.md --recurse",
     "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape",

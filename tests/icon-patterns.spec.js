@@ -1,5 +1,5 @@
 const {JSDOM} = require("jsdom");
-const window = new JSDOM(`<!DOCTYPE html></html>`).window;
+const window = new JSDOM("<!DOCTYPE html></html>").window;
 const $ = require("jquery")(window);
 
 const IconPatterns = require("../src/icon-patterns")(window);
@@ -47,15 +47,15 @@ test("Helpers.getRandomPosition(width, height) returns a random position within 
 test("IconPatterns() throws error messages for invalid instantiations", function(t) {
   t.plan(2);
   try {
-    new IconPatterns.PatternInstance()
+    new IconPatterns.PatternInstance();
   } catch(err) {
-    t.equals(err.message, 'Missing `target` jQuery instance')
+    t.equals(err.message, "Missing `target` jQuery instance");
   }
   try {
     const $target = $("<div id='container'></div>");
-    new IconPatterns.PatternInstance($target)
+    new IconPatterns.PatternInstance($target);
   } catch(err) {
-    t.equals(err.message, 'Missing `icons` configuration from config file')
+    t.equals(err.message, "Missing `icons` configuration from config file");
   }
 });
 
@@ -71,30 +71,30 @@ test("IconPatterns() appends icons in DOM", function(t) {
    * @return {array}
    */
   const filterIconsWithClass = (icons, className) => {
-    return icons.filter((index) => $(icons[index]).find('i').hasClass(className)).map((index) => icons[index])
-  }
+    return icons.filter((index) => $(icons[index]).find("i").hasClass(className)).map((index) => icons[index]);
+  };
 
   t.plan(3);
   // console.log(dom.serialize());
   const $target = $("<div id='container'></div>");
   const instance = new IconPatterns.PatternInstance($target, {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     icons: {
-      'ion-foo': {
+      "ion-foo": {
         count: 10,
         sizeVariation: [10, 30]
       },
-      'ion-bar': {
+      "ion-bar": {
         count: 15,
         sizeVariation: [5, 20]
       }
     }
-  })
+  });
   instance.draw();
-  const $icons = $target.find('.icon-patterns__overlay').children();
+  const $icons = $target.find(".icon-patterns__overlay").children();
   // Extract Icons
-  const iconsFoo = filterIconsWithClass($icons, 'ion-foo');
-  const iconsBar = filterIconsWithClass($icons, 'ion-bar');
+  const iconsFoo = filterIconsWithClass($icons, "ion-foo");
+  const iconsBar = filterIconsWithClass($icons, "ion-bar");
   // Assert states
   t.equals($icons.length, 25);
   t.equals(iconsFoo.length, 10);
