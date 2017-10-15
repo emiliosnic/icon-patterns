@@ -1,6 +1,6 @@
 {
   "name": "icon-patterns",
-  "version": "0.0.16",
+  "version": "0.10.0",
   "description": "Animated icon-pattern background for webpages",
   "main": "dist/icon-patterns.js",
   "jsnext:main": "dist/icon-patterns.js",
@@ -13,7 +13,8 @@
     "documentation": "./node_modules/.bin/jsdoc ./src/** --configure jsdoc.json --readme README.md --recurse",
     "coverage": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape",
     "coverage-code-cov": "find ./tests -name '*.spec.js' | xargs ./node_modules/.bin/istanbul cover ./node_modules/.bin/tape --report lcovonly -- -R spec && ./node_modules/.bin/codecov --token=ca1c25fe-8035-4e5a-9a23-41467ae8e8d8",
-    "postpublish": "npm run coverage-code-cov"
+    "postpublish": "npm run coverage-code-cov",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
     "jsdom": "^11.3.0",
+    "standard-version": "^4.2.0",
     "tape": "^4.8.0"
   }
 }
