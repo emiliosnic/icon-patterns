@@ -1,6 +1,6 @@
 # icon-patterns
 
-Animated icon-pattern background for webpages
+Animated icon-pattern CSS backgrounds
 
 [![Github file size](https://img.shields.io/github/size/emiliosnic/icon-patterns/dist/icon-patterns.min.js.svg)]() [![apm](https://img.shields.io/apm/l/vim-mode.svg)]()  [![codecov](https://img.shields.io/codecov/c/github/emiliosnic/icon-patterns.svg)]()  [![David](https://img.shields.io/david/emiliosnic/icon-patterns.svg)]() [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 

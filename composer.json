@@ -1,7 +1,7 @@
 {
   "name": "emiliosnic/icon-patterns",
   "type": "component",
-  "description": "Icon Patterns",
+  "description": "Include animated CSS icon patterns in your background",
   "homepage": "https://emiliosnic.github.io/icon-patterns",
   "license": "MIT",
   "extra": {

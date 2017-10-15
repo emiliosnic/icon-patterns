@@ -1,7 +1,7 @@
 {
   "name": "icon-patterns",
   "version": "0.9.0",
-  "description": "Animated icon-pattern background for webpages",
+  "description": "Include animated CSS icon patterns in your background",
   "main": "dist/icon-patterns.js",
   "jsnext:main": "dist/icon-patterns.js",
   "browser": "dist/icon-patterns.js",

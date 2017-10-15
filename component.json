@@ -1,7 +1,7 @@
 {
   "name": "emiliosnic/icon-patterns",
   "version": "0.9.0",
-  "description": "Icon Patterns",
+  "description": "Include animated CSS icon patterns in your background",
   "homepage": "https://emiliosnic.github.io/icon-patterns",
   "main": [ "./dist/icon-patterns.js", "./dist/icon-patterns.css" ],
   "dependencies": {
