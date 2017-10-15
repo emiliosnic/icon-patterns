@@ -1,6 +1,6 @@
 {
   "name": "emiliosnic/icon-patterns",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Icon Patterns",
   "homepage": "https://emiliosnic.github.io/icon-patterns",
   "main": [ "./dist/icon-patterns.js", "./dist/icon-patterns.css" ],

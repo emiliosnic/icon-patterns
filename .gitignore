@@ -17,6 +17,3 @@ typings/
 
 # Optional npm cache directory
 .npm
-
-# Build files
-dist/
