@@ -80,6 +80,14 @@
       font-weight: bold;
     }
 
+    .margin--top {
+      margin-top: 40px;
+    }
+
+    .margin--bottom {
+      margin-bottom: 40px;
+    }
+
     .authors-list__author {
       border-radius: 50%;
       width: 50px;
@@ -96,6 +104,30 @@
 
     code.hljs {
       background: transparent;
+    }
+
+    .button {
+      padding: 20px 35px;
+      /*height: 48px;*/
+      border-radius: 24px;
+      color: white;
+      font-weight: bold;
+      -webkit-box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
+      box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
+      background: -moz-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
+      background: -webkit-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e94e5b', endColorstr='#e34d59', GradientType=0);
+    }
+
+    .button:focus,
+    .button:active,
+    .button:hover {
+      color: white;
+    }
+
+    .button img {
+      filter: invert(100%);
+      margin-right: 15px;
     }
   </style>
 </head>
@@ -165,6 +197,14 @@
     }]
   }]
 }).draw();</code></pre>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-12 has-text-centered margin--bottom margin--top">
+          <a href="https://github.com/emiliosnic/icon-patterns" class="button">
+            <img src="https://image.flaticon.com/icons/png/512/25/25231.png" width="20" alt="Github"/>
+            SEE CODE
+          </a>
         </div>
       </div>
       <div class="columns">
