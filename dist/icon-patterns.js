@@ -40,8 +40,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     },
     ANIMATIONS: {
       INITIALIZE: ["initialize", "initialize--fast", "initialize--slow"],
-      ROTATE: ["rotate", "rotate--fast", "rotate--slow", "rotate--reverse", "rotate--reverse--fast", "rotate--reverse--slow"],
-      EXPAND: ["expand", "expand--fast", "expand--slow", "expand--reverse", "expand--reverse--fast", "expand--reverse--slow"]
+      ROTATE: ["none", "rotate", "rotate--fast", "rotate--slow", "rotate--reverse", "rotate--reverse--fast", "rotate--reverse--slow"],
+      EXPAND: ["none", "expand", "expand--fast", "expand--slow", "expand--reverse", "expand--reverse--fast", "expand--reverse--slow"]
     }
   };
 

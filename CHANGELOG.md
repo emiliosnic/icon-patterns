@@ -1,4 +1,4 @@
-# Change Log
+# CHANGELOG
 
-# 0.9.0 (2017-10-15)
+### v0.9.0 - Oct 2017
 Initial release

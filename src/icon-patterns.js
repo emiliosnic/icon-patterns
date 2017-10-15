@@ -33,6 +33,7 @@
         "initialize", "initialize--fast", "initialize--slow"
       ],
       ROTATE: [
+        "none",
         "rotate",
         "rotate--fast",
         "rotate--slow",
@@ -41,6 +42,7 @@
         "rotate--reverse--slow"
       ],
       EXPAND: [
+        "none",
         "expand",
         "expand--fast",
         "expand--slow",

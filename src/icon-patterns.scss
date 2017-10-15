@@ -70,7 +70,7 @@ $expand-reverse-duration: 30s;
   }
 
   &.initialize--slow {
-    animation: zoom-in $zoom-in-duration * 2 cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+    animation: zoom-in $zoom-in-duration * 1.5 cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
   }
 
   &.initialize--fast {
@@ -90,7 +90,7 @@ $expand-reverse-duration: 30s;
   }
 
   &.expand--slow {
-    animation: expand $expand-duration * 2 ease-in-out 0s infinite both;
+    animation: expand $expand-duration * 1.5 ease-in-out 0s infinite both;
   }
 
   &.expand--reverse {
@@ -102,7 +102,7 @@ $expand-reverse-duration: 30s;
   }
 
   &.expand--reverse--slow {
-    animation: expand-reverse $expand-duration * 2 ease-in-out 0s infinite both;
+    animation: expand-reverse $expand-duration * 1.5 ease-in-out 0s infinite both;
   }
 }
 
@@ -114,7 +114,7 @@ $expand-reverse-duration: 30s;
   }
 
   &.rotate--slow {
-    animation: rotate $rotate-duration * 2 linear 0s infinite both;
+    animation: rotate $rotate-duration * 1.5 linear 0s infinite both;
   }
 
   &.rotate--fast {
@@ -126,7 +126,7 @@ $expand-reverse-duration: 30s;
   }
 
   &.rotate--reverse--slow {
-    animation: rotate $rotate-duration * 2 linear 0s infinite both reverse;
+    animation: rotate $rotate-duration * 1.5 linear 0s infinite both reverse;
   }
 
   &.rotate--reverse--fast {
