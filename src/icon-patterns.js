@@ -26,12 +26,28 @@
    */
   $.iconPatterns = {
     DEFAULTS: {
-      color: "#FFFFFF",
+      color: "#FFFFFF"
     },
     ANIMATIONS: {
-      INITIALIZE: ["initialize", "initialize--fast", "initialize--slow"],
-      ROTATE: ["rotate", "rotate--fast", "rotate--slow", "rotate-reverse", "rotate-reverse--fast", "rotate-reverse--slow"],
-      EXPAND: ["expand", "expand--fast", "expand--slow", "expand-reverse", "expand-reverse--fast", "expand-reverse--slow"],
+      INITIALIZE: [
+        "initialize", "initialize--fast", "initialize--slow"
+      ],
+      ROTATE: [
+        "rotate",
+        "rotate--fast",
+        "rotate--slow",
+        "rotate--reverse",
+        "rotate--reverse--fast",
+        "rotate--reverse--slow"
+      ],
+      EXPAND: [
+        "expand",
+        "expand--fast",
+        "expand--slow",
+        "expand--reverse",
+        "expand--reverse--fast",
+        "expand--reverse--slow"
+      ]
     }
   };
 
@@ -43,52 +59,97 @@
    * @returns {object}
    */
   const Helpers = {
-    /**
-     * Generates a random degree count for a rotation (0deg - 360deg)
-     *
-     * @method Helpers.getRandomRotation
-     * @memberof IconPatterns
-     * @returns {number} degrees
-     */
-    getRandomRotation: () => Math.round(Math.random() * 360) + 1,
 
-    /**
-     * Returns random number within a range
-     *
-     * @method Helpers.getRandomNumber
-     * @memberof IconPatterns
-     * @param {number} min  - Min value allowed
-     * @param {number} max  - Max value allowed
-     * @returns {number}
-     */
-    getRandomNumber: (min, max) => Math.floor(Math.random() * (max - min) + min),
+    Random: {
 
-    /**
-     * Returns random item from an array
-     *
-     * @method Helpers.getRandomItemFrom
-     * @memberof IconPatterns
-     * @param {array}  - The base array from which the item will be extracted
-     * @returns {*} item
-     */
-    getRandomItemFrom: (arr) => arr[Helpers.getRandomNumber(0, arr.length)],
+      /**
+       * Generates a random degree count for a rotation (0deg - 360deg)
+       *
+       * @method Helpers.Random.rotation
+       * @memberof IconPatterns
+       * @returns {number} degrees
+       */
+      rotation: () => Math.round(Math.random() * 360) + 1,
 
-    /**
-     * Returns random position within a region
-     *
-     * @method Helpers.getRandomPosition
-     * @memberof IconPatterns
-     * @param {number} width     - X axis size
-     * @param {number} height    - Y axis size
-     * @returns {object} pos     - Random position
-     * @returns {number} pos.x   - Random position X offset
-     * @returns {number} pos.y   - Random position Y offset
-     */
-    getRandomPosition: (width, height) => ({
-      x: parseInt(Math.random() * width),
-      y: parseInt(Math.random() * height)
-    }),
+      /**
+       * Returns random number within a range
+       *
+       * @method Helpers.Random.number
+       * @memberof IconPatterns
+       * @param {number} min  - Min value allowed
+       * @param {number} max  - Max value allowed
+       * @returns {number}
+       */
+      number: (min, max) => Math.floor(Math.random() * (max - min) + min),
 
+      /**
+       * Returns random item from an array
+       *
+       * @method Helpers.Random.itemFrom
+       * @memberof IconPatterns
+       * @param {array}  - The base array from which the item will be extracted
+       * @returns {*} item
+       */
+      itemFrom: (arr) => arr[Helpers.Random.number(0, arr.length)],
+
+      /**
+       * Returns random position within a region
+       *
+       * @method Helpers.Random.offset
+       * @memberof IconPatterns
+       * @param {number} width     - X axis size
+       * @param {number} height    - Y axis size
+       * @returns {object} pos     - Random position
+       * @returns {number} pos.x   - Random position X offset
+       * @returns {number} pos.y   - Random position Y offset
+       */
+      offset: (width, height) => ({
+        x: parseInt(Math.random() * width),
+        y: parseInt(Math.random() * height)
+      }),
+
+      /**
+       * Returns an array of uniformly distributed position within a region
+       *
+       * @method Helpers.Random.positions
+       * @memberof IconPatterns
+       * @param {number} count      - The number of positions to generate
+       * @param {number} width      - X axis size
+       * @param {number} height     - Y axis size
+       * @returns {array} positions - Random position
+       */
+      positions: (count, width = 1, height = 1, offsetRatio = 0.1) => {
+        if (!count || count <= 0) {
+          throw new Error("Argument `count` should be greater than zero");
+        }
+        // Apply a square matrix and then expand it on the horizontal axis
+        const units = Math.floor(Math.sqrt(count)) + 1;
+        const grid = {
+          rows: units,
+          columns: units,
+          width: Math.floor(width / units),
+          height: Math.floor(height / units)
+        };
+        return Array.from(Array(count)).map((t, index) => {
+          const column = Math.floor(index / grid.columns);
+          const row = index % grid.rows;
+          // Determine base position and offset on axes
+          const xPos = (grid.width * row) + grid.width / 2;
+          const yPos = (grid.height * column) + grid.height / 2;
+          const offset = Helpers.Random.offset(offsetRatio * (width / 2), offsetRatio * (height / 2));
+          return {
+            x: Helpers.Random.itemFrom([
+              xPos + offset.x,
+              xPos - offset.x
+            ]),
+            y: Helpers.Random.itemFrom([
+              yPos + offset.y,
+              yPos - offset.y
+            ])
+          };
+        });
+      }
+    }
   };
 
   /**
@@ -137,17 +198,8 @@
    * @returns {jquery} icon
    */
   PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, animations) {
-    const iconStyle = [
-      `font-size: ${size}px`,
-      `color: ${color}`
-    ];
-    const spanStyle = [
-      `left: ${pos.x}px`,
-      `top: ${pos.y}px`,
-      `-webkit-transform: rotate(${rotation}deg)`,
-      `-MS-transform: rotate(${rotation}deg)`,
-      `transform: rotate(${rotation}deg)`
-    ];
+    const iconStyle = [`font-size: ${size}px`, `color: ${color}`];
+    const spanStyle = [`left: ${pos.x}px`, `top: ${pos.y}px`, `-webkit-transform: rotate(${rotation}deg)`, `-MS-transform: rotate(${rotation}deg)`, `transform: rotate(${rotation}deg)`];
     return $("<span class='icon-patterns__animations__initial " + animations.initial + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__expand " + animations.expand + "'> <i class='" + [className, animations.rotate].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
   };
 
@@ -164,12 +216,7 @@
     const $overlay = $("<div class='icon-patterns__overlay'></div>");
     $overlay.width(width);
     $overlay.height(height);
-    $overlay.css({
-      "position": "absolute",
-      "z-index": 1,
-      "top": 0,
-      "left": 0
-    });
+    $overlay.css({"position": "absolute", "z-index": 1, "top": 0, "left": 0});
     return $overlay;
   };
 
@@ -182,26 +229,30 @@
    */
   PatternInstance.prototype.draw = function() {
     const ANIMATIONS = $.iconPatterns.ANIMATIONS;
-    Object.entries(this.icons).forEach(([iconName, iconProperties]) => {
-      const {
-        sizeVariation,
-        count,
-      } = iconProperties;
-      // Attach icons
+    const iconsArray = Object.entries(this.icons);
+    // Determine grid positions for all icons
+    const totalCount = iconsArray.reduce((acc, icon) => {
+      return acc + icon[1].count;
+    }, 0);
+    let positions = Helpers.Random.positions(totalCount, this.width, this.height);
+    // Generate and append icons
+    iconsArray.forEach(([name, properties]) => {
+      const {sizeVariation, count} = properties;
       Array.from(Array(count)).forEach(() => {
         // Generate a random position for each icon
-        const rotation = Helpers.getRandomRotation();
-        const pos = Helpers.getRandomPosition(this.width, this.height);
+        const rotation = Helpers.Random.rotation();
+        const positionOffset = Helpers.Random.number(0, positions.length - 1);
+        const pos = positions.splice(positionOffset, 1)[0];
         // Determine sizeWeight for each icon
-        const size = Helpers.getRandomNumber(sizeVariation[0], sizeVariation[1]);
+        const size = Helpers.Random.number(sizeVariation[0], sizeVariation[1]);
         // Determine animation styles
         const animations = {
-          initial: Helpers.getRandomItemFrom(ANIMATIONS.INITIALIZE),
-          rotate: Helpers.getRandomItemFrom(ANIMATIONS.ROTATE),
-          expand: Helpers.getRandomItemFrom(ANIMATIONS.EXPAND),
+          initial: Helpers.Random.itemFrom(ANIMATIONS.INITIALIZE),
+          rotate: Helpers.Random.itemFrom(ANIMATIONS.ROTATE),
+          expand: Helpers.Random.itemFrom(ANIMATIONS.EXPAND)
         };
-        // Generate and append icon
-        this.$overlay.append(this.generateIcon(this.color, iconName, size, pos, rotation, animations));
+        const $icon = this.generateIcon(this.color, name, size, pos, rotation, animations);
+        this.$overlay.append($icon);
       });
     });
     return this;
@@ -230,9 +281,6 @@
   /**
    * Public functions
    */
-  return {
-    Helpers: Helpers,
-    PatternInstance: PatternInstance
-  };
+  return {Helpers: Helpers, PatternInstance: PatternInstance};
 
 }));

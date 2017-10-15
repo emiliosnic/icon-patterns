@@ -8,7 +8,7 @@
   <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./dist/icon-patterns.css">
+  <link rel="stylesheet" type="text/css" href="./dist/icon-patterns.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <style>
@@ -130,7 +130,7 @@
           <p>
             Load the css assets in the <span class="font--bold">head</span> section.
           </p>
-          <pre><code class="html">&lt;link href="./dist/icon-patterns.css" rel="stylesheet" type="text/css"&gt;</code></pre>
+          <pre><code class="html">&lt;link href="./dist/icon-patterns.min.css" rel="stylesheet" type="text/css"&gt;</code></pre>
           <p>
             Load the javascript assets before closing the <span class="font--bold">body</span> tag.
           </p>
@@ -160,6 +160,10 @@
     'ion-erlenmeyer-flask': {
       count: 15,
       sizeVariation: [5, 20],
+    },
+    'ion-flash': {
+      count: 15,
+      sizeVariation: [5, 35],
     }]
   }]
 }).draw();</code></pre>
@@ -197,12 +201,16 @@
         color: '#FFFFFF',
         icons: {
           'ion-cube': {
-            count: 10,
+            count: 15,
             sizeVariation: [10, 30],
           },
           'ion-erlenmeyer-flask': {
-            count: 15,
+            count: 10,
             sizeVariation: [5, 20],
+          },
+          'ion-flash': {
+            count: 15,
+            sizeVariation: [5, 35],
           },
         }
       }).draw();
