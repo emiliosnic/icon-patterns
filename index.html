@@ -60,7 +60,7 @@
       position: relative;
       width: auto;
       max-width: 950px;
-      padding: 160px;
+      padding: 140px;
       border-radius: 8px;
       background-color: #FFF;
       box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
@@ -108,33 +108,64 @@
 
     .button {
       padding: 20px 35px;
-      /*height: 48px;*/
       border-radius: 24px;
+      border: 0;
       color: white;
       font-weight: bold;
       -webkit-box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
       box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
+      background: linear-gradient(top, #e94e5b 0%, #e34d59 100%);
       background: -moz-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
       background: -webkit-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e94e5b', endColorstr='#e34d59', GradientType=0);
     }
 
     .button:focus,
     .button:active,
     .button:hover {
       color: white;
+      border: 0;
     }
 
     .button img {
       filter: invert(100%);
       margin-right: 15px;
     }
+
+    .ice-breaker__button {
+      z-index: 100;
+      position: absolute;
+      right: 40px;
+      top: 40px;
+    }
+
+    .ice-breaker__button img {
+      filter: invert(100%);
+      margin-right: 10px;
+    }
+
+    .ice-breaker__button,
+    .ice-breaker__button:hover,
+    .ice-breaker__button:active {
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .ice-breaker__button:hover,
+    .ice-breaker__button:active {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 
 <body>
   <div id="container" class="header columns">
     <div class="column has-text-centered">
+      <a href="https://github.com/emiliosnic/icon-patterns" class="ice-breaker__button">
+        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" width="20" height="20" alt="Github URL"/>github.com/emiliosnic/icon-patterns
+      </a>
+
       <h1 class="color--light font--bold">We've created Icon patterns.</h1>
       <p class="color--light">We’ve tried to create something cool. You are already viewing it in the background. You can download it, too - for free.</p>
     </div>
@@ -226,7 +257,7 @@
     <div class="column has-text-centered">
       <p>Spread the positive vibes </p>
       <hr/>
-      <p>Icon patterns are under the free-do-whatever-you-want-with-it license. It’s also open-source.</p>
+      <p>Icon patterns are free and open-source. Feel free to use it!</p>
     </div>
   </div>
   <!-- .................................... -->
