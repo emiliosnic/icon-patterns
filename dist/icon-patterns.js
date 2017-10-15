@@ -158,7 +158,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    *
    * @constructor
    * @memberof IconPatterns
-   * @param {jQuery} $target    - The jQuery object where the overlay will be applied
+   * @param {jQuery} $target       - The jQuery object where the overlay will be applied
    * @param {object} config        - Configuration properties
    * @param {array} config.icons   - The icon properties to use
    * @param {string} config.color  - The icon color to use
@@ -178,10 +178,28 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     this.width = $target.outerWidth();
     this.height = $target.outerHeight();
     this.$overlay = this.generateOverlay(this.width, this.height);
-    this.$target = $target;
-    this.$target.css("position", "relative");
-    this.$target.prepend(this.$overlay);
+    this.$container = this.generateContainer($target);
+    this.$container.append(this.$overlay);
   }
+
+  /**
+   * Gerneates container object where icons will be placed
+   *
+   * @method generateContainer
+   * @memberof IconPatterns.PatternInstance
+   * @param {jquery} $root         - The DOM item to use
+   * @returns {jquery} container
+   */
+  PatternInstance.prototype.generateContainer = function ($root) {
+    $root.css("position", "relative");
+    // For all children of the target ensure that z-index is greater than 0
+    $root.children().each(function () {
+      if ($(this).css("z-index") === "auto") {
+        $(this).css("z-index", 1);
+      }
+    });
+    return $root;
+  };
 
   /**
    * Generates an icon
@@ -219,7 +237,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var $overlay = $("<div class='icon-patterns__overlay'></div>");
     $overlay.width(width);
     $overlay.height(height);
-    $overlay.css({ "position": "absolute", "z-index": 1, "top": 0, "left": 0 });
+    $overlay.css({ "position": "absolute", "z-index": 0, "top": 0, "left": 0 });
     return $overlay;
   };
 
@@ -283,7 +301,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
      * @param {string} config.color  - The icon color to use
      * @returns {PatternInstance}
      */
-    IconPatterns: /* istanbul ignore next */function IconPatterns(config) {
+    IconPatterns: /* istanbul ignore next */
+    function IconPatterns(config) {
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
   });

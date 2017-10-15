@@ -98,11 +98,14 @@ test("IconPatterns() appends icons in DOM", function(t) {
   const filterIconsWithClass = (icons, className) => {
     return icons.filter((index) => $(icons[index]).find("i").hasClass(className)).map((index) => icons[index]);
   };
-
-  t.plan(3);
+  t.plan(6);
   // console.log(dom.serialize());
-  const $target = $("<div id='container'></div>");
-  const instance = new IconPatterns.PatternInstance($target, {
+  const $container = $("<div id='container'></div>");
+  const $child1 = $("<div id='container__child__1' style='z-index:auto;'></div>");
+  const $child2 = $("<div id='container__child__2' style='z-index:2;'></div>");
+  $container.append($child1);
+  $container.append($child2);
+  const instance = new IconPatterns.PatternInstance($container, {
     color: "#FFFFFF",
     icons: {
       "ion-foo": {
@@ -116,12 +119,16 @@ test("IconPatterns() appends icons in DOM", function(t) {
     }
   });
   instance.draw();
-  const $icons = $target.find(".icon-patterns__overlay").children();
+  const $icons = $container.find(".icon-patterns__overlay").children();
   // Extract Icons
   const iconsFoo = filterIconsWithClass($icons, "ion-foo");
   const iconsBar = filterIconsWithClass($icons, "ion-bar");
-  // Assert states
+  // Assert icon counts
   t.equals($icons.length, 25);
   t.equals(iconsFoo.length, 10);
   t.equals(iconsBar.length, 15);
+  // Assert the the icon layer lays on top of the child elements
+  t.equals($container.find(".icon-patterns__overlay").css("z-index"), "0");
+  t.equals($child1.css("z-index"), "1");    // `auto` is transformed to 1
+  t.equals($child2.css("z-index"), "2");    // `2` remains `2`
 });
