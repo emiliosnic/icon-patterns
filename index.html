@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Icon Patterns</title>
   <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+  <meta property="og:image" content="http://example.com/logo.jpg">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
   <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
@@ -29,7 +34,7 @@
     }
 
     .header {
-      padding: 200px 0 350px 0;
+      padding: 180px 0 300px 0;
       background: transparent;
       background: #F26470;
       background-image: -moz-linear-gradient(top, #F26470, #FF8993);
@@ -60,7 +65,7 @@
       position: relative;
       width: auto;
       max-width: 950px;
-      padding: 140px;
+      padding: 120px 140px;
       border-radius: 8px;
       background-color: #FFF;
       box-shadow: 0 32px 161px 0 rgba(204, 204, 204, 0.32);
@@ -81,11 +86,11 @@
     }
 
     .margin--top {
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .margin--bottom {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .authors-list__author {
@@ -106,17 +111,26 @@
       background: transparent;
     }
 
+
+    img.inverted {
+      filter: invert(100%);
+    }
+
+
     .button {
       padding: 20px 35px;
       border-radius: 24px;
       border: 0;
       color: white;
       font-weight: bold;
-      -webkit-box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
       box-shadow: 0 16px 54px 0 rgba(204, 204, 204, 0.53);
       background: linear-gradient(top, #e94e5b 0%, #e34d59 100%);
       background: -moz-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
       background: -webkit-linear-gradient(top, #e94e5b 0%, #e34d59 100%);
+    }
+
+    .button img {
+      margin-right: 15px;
     }
 
     .button:focus,
@@ -124,11 +138,6 @@
     .button:hover {
       color: white;
       border: 0;
-    }
-
-    .button img {
-      filter: invert(100%);
-      margin-right: 15px;
     }
 
     .ice-breaker__button {
@@ -139,7 +148,6 @@
     }
 
     .ice-breaker__button img {
-      filter: invert(100%);
       margin-right: 10px;
     }
 
@@ -155,7 +163,6 @@
     .ice-breaker__button:active {
       text-decoration: underline;
     }
-
   </style>
 </head>
 
@@ -163,9 +170,8 @@
   <div id="container" class="header columns">
     <div class="column has-text-centered">
       <a href="https://github.com/emiliosnic/icon-patterns" class="ice-breaker__button">
-        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" width="20" height="20" alt="Github URL"/>github.com/emiliosnic/icon-patterns
+        <img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="inverted" width="18" height="18" alt="Github URL"/>github.com/emiliosnic/icon-patterns
       </a>
-
       <h1 class="color--light font--bold">We've created Icon patterns.</h1>
       <p class="color--light">We’ve tried to create something cool. You are already viewing it in the background. You can download it, too - for free.</p>
     </div>
@@ -173,13 +179,14 @@
   <div class="content__wrapper">
     <div class="content">
       <div class="columns">
-        <div class="column is-12 has-text-centered">
+        <div class="column is-12 has-text-centered margin--bottom">
           <h3>Icon patterns for your background</h3>
         </div>
       </div>
       <div class="columns">
         <div class="column is-12">
-          <p>Append animated icons in the background of any DOM element. Just import use any iconic font set that you prefer and the library will inject icons with random animations in your DOM element. You are currently viewing an example in the top section.</p>
+          <p>Append animated icons in the background of any DOM element. Just import any iconic font set that you prefer and the library will automatically inject icons with random animations in your DOM element. You are currently viewing an example in the
+            top section.</p>
           <p class="section__title">
             Import Dependencies
           </p>
@@ -203,29 +210,30 @@
           <p class="section__title">
             Setup DOM
           </p>
+          <p>You can use any selectors to define your target via <a href="https://jquery.com/">jQuery</a>.</p>
           <pre><code class="html">&lt;div id="my-container"&gt; We've created Icon Patterns &lt;/div&gt;</code></pre>
           </h3>
           <p class="section__title">
-            Configure Icon patterns
+            Configure positions and count
           </p>
           <p>
             Include the name prefixes as described in the font icon set that you have imported.
           </p>
           <pre><code class="js">$('#my-container').IconPatterns({
   color: '#FFFFFF',
-  icons: [{
+  icons: {
     'ion-cube': {
       count: 10,
-      sizeVariation: [10, 30],
+      sizeVariation: [10, 25],
     },
     'ion-erlenmeyer-flask': {
       count: 15,
       sizeVariation: [5, 20],
     },
     'ion-flash': {
-      count: 15,
+      count: 10,
       sizeVariation: [5, 35],
-    }]
+    },
   }]
 }).draw();</code></pre>
         </div>
@@ -233,7 +241,7 @@
       <div class="columns">
         <div class="column is-12 has-text-centered margin--bottom margin--top">
           <a href="https://github.com/emiliosnic/icon-patterns" class="button">
-            <img src="https://image.flaticon.com/icons/png/512/25/25231.png" width="20" alt="Github"/>
+            <img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="inverted" width="20" alt="Github"/>
             SEE CODE
           </a>
         </div>
@@ -254,8 +262,9 @@
     </div>
   </div>
   <div class="footer columns">
-    <div class="column has-text-centered">
-      <p>Spread the positive vibes </p>
+    <div class="column is-12 has-text-centered">
+      <p class="margin--bottom">Spread the positive vibes. 🎉</p>
+      <a href="https://twitter.com/"><img src="https://cdn3.iconfinder.com/data/icons/popular-services-brands/512/twitter-128.png" width="30" height="30" alt="Twittter icon"></a>
       <hr/>
       <p>Icon patterns are free and open-source. Feel free to use it!</p>
     </div>
@@ -270,15 +279,15 @@
         color: '#FFFFFF',
         icons: {
           'ion-cube': {
-            count: 15,
-            sizeVariation: [10, 30],
+            count: 10,
+            sizeVariation: [10, 25],
           },
           'ion-erlenmeyer-flask': {
-            count: 10,
+            count: 15,
             sizeVariation: [5, 20],
           },
           'ion-flash': {
-            count: 15,
+            count: 10,
             sizeVariation: [5, 35],
           },
         }

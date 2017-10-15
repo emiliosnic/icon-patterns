@@ -107,20 +107,14 @@
   transition: all 2s cubic-bezier(0.645, 0.045, 0.355, 1);
   position: absolute; }
   .icon-patterns__overlay .icon-patterns__animations__initial.initialize {
-    -webkit-animation: zoom-in 30s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-    animation: zoom-in 30s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s; }
+    -webkit-animation: zoom-in 6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+    animation: zoom-in 6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both; }
   .icon-patterns__overlay .icon-patterns__animations__initial.initialize--slow {
-    -webkit-animation: zoom-in 45s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-    animation: zoom-in 45s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s; }
+    -webkit-animation: zoom-in 12s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both;
+    animation: zoom-in 12s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both; }
   .icon-patterns__overlay .icon-patterns__animations__initial.initialize--fast {
-    -webkit-animation: zoom-in 15s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s both;
-    animation: zoom-in 15s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s both;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s; }
+    -webkit-animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s both;
+    animation: zoom-in 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s both; }
 
 .icon-patterns__overlay .icon-patterns__animations__expand {
   display: inline-block; }
@@ -131,8 +125,8 @@
     -webkit-animation: expand 15s ease-in-out 0s infinite both;
     animation: expand 15s ease-in-out 0s infinite both; }
   .icon-patterns__overlay .icon-patterns__animations__expand.expand--slow {
-    -webkit-animation: expand 45s ease-in-out 0s infinite both;
-    animation: expand 45s ease-in-out 0s infinite both; }
+    -webkit-animation: expand 60s ease-in-out 0s infinite both;
+    animation: expand 60s ease-in-out 0s infinite both; }
   .icon-patterns__overlay .icon-patterns__animations__expand.expand--reverse {
     -webkit-animation: expand-reverse 30s ease-in-out 0s infinite;
     animation: expand-reverse 30s ease-in-out 0s infinite; }
@@ -140,8 +134,8 @@
     -webkit-animation: expand-reverse 15s ease-in-out 0s infinite;
     animation: expand-reverse 15s ease-in-out 0s infinite; }
   .icon-patterns__overlay .icon-patterns__animations__expand.expand--reverse--slow {
-    -webkit-animation: expand-reverse 45s ease-in-out 0s infinite both;
-    animation: expand-reverse 45s ease-in-out 0s infinite both; }
+    -webkit-animation: expand-reverse 60s ease-in-out 0s infinite both;
+    animation: expand-reverse 60s ease-in-out 0s infinite both; }
 
 .icon-patterns__overlay i {
   display: inline-block; }
@@ -149,8 +143,8 @@
     -webkit-animation: rotate 30s linear 0s infinite both;
     animation: rotate 30s linear 0s infinite both; }
   .icon-patterns__overlay i.rotate--slow {
-    -webkit-animation: rotate 45s linear 0s infinite both;
-    animation: rotate 45s linear 0s infinite both; }
+    -webkit-animation: rotate 60s linear 0s infinite both;
+    animation: rotate 60s linear 0s infinite both; }
   .icon-patterns__overlay i.rotate--fast {
     -webkit-animation: rotate 15s linear 0s infinite both;
     animation: rotate 15s linear 0s infinite both; }
@@ -158,8 +152,8 @@
     -webkit-animation: rotate 30s linear 0s infinite both reverse;
     animation: rotate 30s linear 0s infinite both reverse; }
   .icon-patterns__overlay i.rotate--reverse--slow {
-    -webkit-animation: rotate 45s linear 0s infinite both reverse;
-    animation: rotate 45s linear 0s infinite both reverse; }
+    -webkit-animation: rotate 60s linear 0s infinite both reverse;
+    animation: rotate 60s linear 0s infinite both reverse; }
   .icon-patterns__overlay i.rotate--reverse--fast {
     -webkit-animation: rotate 15s linear 0s infinite both reverse;
     animation: rotate 15s linear 0s infinite both reverse; }

@@ -113,22 +113,23 @@
        *
        * @method Helpers.Random.positions
        * @memberof IconPatterns
-       * @param {number} count      - The number of positions to generate
-       * @param {number} width      - X axis size
-       * @param {number} height     - Y axis size
-       * @returns {array} positions - Random position
+       * @param {number} count         - The number of positions to generate
+       * @param {number} width         - X axis size
+       * @param {number} height        - Y axis size
+       * @param {number} offsetRation  - The ratio (0-1) relative to grid cell width & height, which detemrine how far fro the center icons can be
+       * @returns {array} positions    - Random position
        */
       positions: (count, width = 1, height = 1, offsetRatio = 0.1) => {
         if (!count || count <= 0) {
           throw new Error("Argument `count` should be greater than zero");
         }
         // Apply a square matrix and then expand it on the horizontal axis
-        const units = Math.floor(Math.sqrt(count)) + 1;
+        const cellCount = Math.floor(Math.sqrt(count)) + 1;
         const grid = {
-          rows: units,
-          columns: units,
-          width: Math.floor(width / units),
-          height: Math.floor(height / units)
+          rows: cellCount,
+          columns: cellCount,
+          width: Math.floor(width / cellCount),
+          height: Math.floor(height / cellCount)
         };
         return Array.from(Array(count)).map((t, index) => {
           const column = Math.floor(index / grid.columns);
@@ -272,8 +273,7 @@
      * @param {string} config.color  - The icon color to use
      * @returns {PatternInstance}
      */
-    IconPatterns: function(config) {
-      /* istanbul ignore next */
+    IconPatterns:  /* istanbul ignore next */ function(config) {
       return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
     }
   });
