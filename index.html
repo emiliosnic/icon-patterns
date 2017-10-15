@@ -8,16 +8,26 @@
   <title>Icon Patterns</title>
   <!-- Icon assets -->
   <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
-  <!-- Creatives for sharing -->
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Icon Patterns">
+  <meta itemprop="description" content="Include animated CSS icon patterns in your background">
+  <meta itemprop="image" content="https://raw.githubusercontent.com/emiliosnic/icon-patterns/master/assets/share.png">
+  <!-- Open Graph data -->
   <meta property="og:title" content="Icon Patterns" />
   <meta property="og:url" content="https://emiliosnic.github.io/icon-patterns/" />
   <meta property="og:description" content="Include animated CSS icon patterns in your background">
   <meta property="og:type" content="article" />
-  <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://raw.githubusercontent.com/emiliosnic/icon-patterns/master/assets/share.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="400">
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="https://emiliosnic.github.io/icon-patterns">
+  <meta name="twitter:title" content="Icon Patterns">
+  <meta name="twitter:description" content="Include animated CSS icon patterns in your background">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/emiliosnic/icon-patterns/master/assets/share-square.png">
+
   <!-- We are using Bulma for setting the grid for this example. For more information check http://bulma.io/  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700,900" rel="stylesheet">
@@ -283,8 +293,7 @@
       <p>Icon patterns are free and open-source. Feel free to use it!</p>
     </div>
   </div>
-  <!-- .................................... -->
-  <!-- Configure IconPatterns -->
+  <!-- IconPatterns setup -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="./dist/icon-patterns.js" charset="utf-8"></script>
   <script>
@@ -308,10 +317,18 @@
       }).draw();
     });
   </script>
+  <!-- Highlight.js setup -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
+  <!-- Google Analytics setup -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71654451-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-71654451-3');
+  </script>
 </body>
-
 </html>
