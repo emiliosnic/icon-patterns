@@ -5,52 +5,55 @@
   /* istanbul ignore next */
   if (typeof define === "function" && define.amd) {
     // AMD import
-    define(["jquery"], factory);
+    define([], factory);
   } else if (typeof exports === "object") {
     // Node/CommonJS import
-    module.exports = (window = global.window) => factory(require("jQuery")(window));
+    module.exports = () => factory();
   } else {
     // Browser globals
-    factory(jQuery);
+    window.IconPatterns = window.IconPatterns || factory().PatternInstance;
   }
-}(function($) {
+}(function() {
   "use strict";
 
   /**
    * @memberof IconPatterns
-   * @property {object} DEFAULTS           - The default setupf or iconPatterns
-   * @property {array} DEFAULTS.animations - The available animation types
-   * @property {number} DEFAULTS.size      - The default icon size
+   * @property {object} DEFAULTS           - The default values
    * @property {string} DEFAULTS.color     - The default icon color
-   * @property {object} ANIMATIONS         - The available animation styles
    */
-  $.iconPatterns = {
-    DEFAULTS: {
-      color: "#FFFFFF"
-    },
-    ANIMATIONS: {
-      INITIALIZE: [
-        "initialize", "initialize--fast", "initialize--slow"
-      ],
-      ROTATE: [
-        "none",
-        "rotate",
-        "rotate--fast",
-        "rotate--slow",
-        "rotate--reverse",
-        "rotate--reverse--fast",
-        "rotate--reverse--slow"
-      ],
-      EXPAND: [
-        "none",
-        "expand",
-        "expand--fast",
-        "expand--slow",
-        "expand--reverse",
-        "expand--reverse--fast",
-        "expand--reverse--slow"
-      ]
-    }
+  const DEFAULTS = {
+    color: "#FFFFFF"
+  };
+
+  /**
+   * @memberof IconPatterns
+   * @property {object} ANIMATIONS           - The default animations
+   * @property {string} DEFAULTS.INITIALIZE  - Default initialization animations
+   * @property {string} DEFAULTS.ROTATE      - Default rotate animations
+   * @property {string} DEFAULTS.EXPAND      - Default expand animations
+   */
+  const ANIMATIONS = {
+    INITIALIZE: [
+      "initialize", "initialize--fast", "initialize--slow"
+    ],
+    ROTATE: [
+      "none",
+      "rotate",
+      "rotate--fast",
+      "rotate--slow",
+      "rotate--reverse",
+      "rotate--reverse--fast",
+      "rotate--reverse--slow"
+    ],
+    EXPAND: [
+      "none",
+      "expand",
+      "expand--fast",
+      "expand--slow",
+      "expand--reverse",
+      "expand--reverse--fast",
+      "expand--reverse--slow"
+    ]
   };
 
   /**
@@ -61,6 +64,57 @@
    * @returns {object}
    */
   const Helpers = {
+
+    DOM: {
+
+      /**
+       * Appends classes to an HTMLElement node
+       *
+       * @method Helpers.DOM.appendClasses
+       * @memberof IconPatterns
+       * @param {HTMLElement} htmlElement - The DOM node to update
+       * @param {array} classes           - The classes to append
+       */
+      appendClasses: (htmlElement, classes) => {
+        htmlElement.className += String([""].concat(classes).join(" "));
+      },
+
+      /**
+       * Appends style attributes to an HTMLElement
+       *
+       * @method Helpers.DOM.appendStyle
+       * @memberof IconPatterns
+       * @param {HTMLElement} htmlElement - The DOM node to update
+       * @param {object} style            - The style attributes to append
+       */
+      appendStyle: (htmlElement, style) => {
+        if (!(style instanceof Object) || !(htmlElement instanceof HTMLElement)){
+          return;
+        }
+        Object.entries(style).forEach(([
+          attribute, value
+        ], idx) => {
+          htmlElement.style[attribute] = value;
+        });
+      },
+
+      /**
+       * Generates an HTMLElement node with class and style attributes
+       *
+       * @method Helpers.DOM.generateElement
+       * @param {String} tag    - The tag to use
+       * @param {array} classes - The classes to append
+       * @param {object} style  - The style attributes to append
+       * @memberof IconPatterns
+       * @returns {HTMLElement}
+       */
+      generateElement: (tag, classes, style) => {
+        const element = document.createElement(tag);
+        Helpers.DOM.appendClasses(element, classes);
+        Helpers.DOM.appendStyle(element, style);
+        return element;
+      }
+    },
 
     Random: {
 
@@ -160,26 +214,27 @@
    *
    * @constructor
    * @memberof IconPatterns
-   * @param {jQuery} $target       - The jQuery object where the overlay will be applied
+   * @param {HTMLElement} target   - The DOM element where the overlay will be applied
    * @param {object} config        - Configuration properties
    * @param {array} config.icons   - The icon properties to use
    * @param {string} config.color  - The icon color to use
    * @returns {PatternInstance}
    */
-  function PatternInstance($target, config = {}) {
-    if (!$target || !$target.length) {
-      throw new Error("Missing `target` jQuery instance");
+  function PatternInstance(target, config = {}) {
+    if (!target || !(target instanceof HTMLElement)) {
+      throw new Error("Missing `target` HTMLElement");
     }
     if (!config.icons || !Object.keys(config.icons).length) {
       throw new Error("Missing `icons` configuration from config file");
     }
+    config = Object.assign({}, config, DEFAULTS);
     this.color = config.color;
     this.icons = config.icons;
-    this.width = $target.outerWidth();
-    this.height = $target.outerHeight();
-    this.$overlay = this.generateOverlay(this.width, this.height);
-    this.$container = this.generateContainer($target);
-    this.$container.append(this.$overlay);
+    this.width = target.offsetWidth;
+    this.height = target.offsetHeight;
+    this.DOM_overlay = this.generateOverlay(this.width, this.height);
+    this.DOM_container = this.generateContainer(target);
+    this.DOM_container.appendChild(this.DOM_overlay);
   }
 
   /**
@@ -187,18 +242,18 @@
    *
    * @method generateContainer
    * @memberof IconPatterns.PatternInstance
-   * @param {jquery} $root         - The DOM item to use
-   * @returns {jquery} container
+   * @param {HTMLElement} DOM_root       - The DOM item to use
+   * @returns {HTMLElement} container
    */
-  PatternInstance.prototype.generateContainer = function($root) {
-    $root.css("position", "relative");
+  PatternInstance.prototype.generateContainer = function(DOM_root) {
+    Helpers.DOM.appendStyle(DOM_root, {position: "relative"});
     // For all children of the target ensure that z-index is greater than 0
-    $root.children().each(function() {
-      if ($(this).css("z-index") === "auto") {
-        $(this).css("z-index", 1);
+    Object.entries(DOM_root.childNodes).forEach(([idx, element]) => {
+      if ((element instanceof HTMLElement) && element.style["z-index"] === "auto") {
+        Helpers.DOM.appendStyle(element, {"z-index": "1"});
       }
     });
-    return $root;
+    return DOM_root;
   };
 
   /**
@@ -216,12 +271,27 @@
    * @param {string} animations.initial  - Animation set for initial behaviour
    * @param {string} animations.expand   - Animation set for expansion behaviour
    * @param {string} animations.rotate   - Animation set for rotation behaviour
-   * @returns {jquery} icon
+   * @returns {HTMLElement} icon
    */
   PatternInstance.prototype.generateIcon = function(color, className, size, pos, rotation, animations) {
-    const iconStyle = [`font-size: ${size}px`, `color: ${color}`];
-    const spanStyle = [`left: ${pos.x}px`, `top: ${pos.y}px`, `-webkit-transform: rotate(${rotation}deg)`, `-MS-transform: rotate(${rotation}deg)`, `transform: rotate(${rotation}deg)`];
-    return $("<span class='icon-patterns__animations__initial " + animations.initial + "' style='" + spanStyle.join(";") + "'><span class='icon-patterns__animations__expand " + animations.expand + "'> <i class='" + [className, animations.rotate].join(" ") + "' style='" + iconStyle.join(";") + "'></i></span></span>");
+    const iconStyle = {
+      "font-size": `${size}px`,
+      "color": color
+    };
+    const spanStyle = {
+      "position": "absolute",
+      "left": `${pos.x}px`,
+      "top": `${pos.y}px`,
+      "-webkit-transform": `rotate(${rotation}deg)`,
+      "-MS-transform": `rotate(${rotation}deg)`,
+      "transform": `rotate(${rotation}deg)`
+    };
+    const DOM_icon = Helpers.DOM.generateElement("i", [className].concat(animations.rotate), iconStyle);
+    const DOM_span = Helpers.DOM.generateElement("span", ["icon-patterns__animations__expand"].concat(animations.expand));
+    const DOM_wrapper = Helpers.DOM.generateElement("span", ["icon-patterns__animations__initial"].concat(animations.initial), spanStyle);
+    DOM_span.appendChild(DOM_icon);
+    DOM_wrapper.appendChild(DOM_span);
+    return DOM_wrapper;
   };
 
   /**
@@ -231,14 +301,18 @@
    * @memberof IconPatterns.PatternInstance
    * @returns {number} width    - The parent container width
    * @returns {number} height   - The parent container height
-   * @returns {jquery} overlay
+   * @returns {HTMLElement} overlay
    */
   PatternInstance.prototype.generateOverlay = function(width, height) {
-    const $overlay = $("<div class='icon-patterns__overlay'></div>");
-    $overlay.width(width);
-    $overlay.height(height);
-    $overlay.css({"position": "absolute", "z-index": 0, "top": 0, "left": 0});
-    return $overlay;
+    const overlayStyle = {
+      "width": `${width}px`,
+      "height": `${height}px`,
+      "position": "absolute",
+      "top": 0,
+      "left": 0,
+      "z-index": 0
+    };
+    return Helpers.DOM.generateElement("div", ["icon-patterns__overlay"], overlayStyle);
   };
 
   /**
@@ -249,7 +323,6 @@
    * @returns {IconPatterns.PatternInstance}
    */
   PatternInstance.prototype.draw = function() {
-    const ANIMATIONS = $.iconPatterns.ANIMATIONS;
     const iconsArray = Object.entries(this.icons);
     // Determine grid positions for all icons
     const totalCount = iconsArray.reduce((acc, icon) => {
@@ -272,32 +345,12 @@
           rotate: Helpers.Random.itemFrom(ANIMATIONS.ROTATE),
           expand: Helpers.Random.itemFrom(ANIMATIONS.EXPAND)
         };
-        const $icon = this.generateIcon(this.color, name, size, pos, rotation, animations);
-        this.$overlay.append($icon);
+        const DOM_icon = this.generateIcon(this.color, name, size, pos, rotation, animations);
+        this.DOM_overlay.appendChild(DOM_icon);
       });
     });
     return this;
   };
-
-  /**
-   * Attaches IconPatern to jQuery namespace
-   * @private
-   */
-  $.extend($.fn, {
-    /**
-     * Retunns a new PatternInstance for a given configuration
-     *
-     * @method IconPatterns
-     * @param {object} config        - Configuration properties
-     * @param {array} config.icons   - The icon properties to use
-     * @param {string} config.color  - The icon color to use
-     * @returns {PatternInstance}
-     */
-    IconPatterns:/* istanbul ignore next */
-    function(config) {
-      return new PatternInstance($(this), Object.assign({}, config, $.iconPatterns.DEFAULTS));
-    }
-  });
 
   /**
    * Public functions

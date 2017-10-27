@@ -1,6 +1,6 @@
 {
   "name": "icon-patterns",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Include animated CSS icon patterns in your background",
   "main": "dist/icon-patterns.js",
   "jsnext:main": "dist/icon-patterns.js",
@@ -26,9 +26,6 @@
   "bugs": {
     "url": "https://github.com/emiliosnic/icon-patterns/issues"
   },
-  "dependencies": {
-    "jquery": ">= 3.0.x"
-  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",
@@ -45,6 +42,7 @@
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
     "jsdom": "^11.3.0",
+    "jsdom-global": "^3.0.2",
     "tape": "^4.8.0"
   }
 }

@@ -1,8 +1,8 @@
-const {JSDOM} = require("jsdom");
-const window = new JSDOM("<!DOCTYPE html></html>").window;
-const $ = require("jquery")(window);
+// const {JSDOM} = require("jsdom");
+// const window = new JSDOM("<!DOCTYPE html></html>").window;
+require("jsdom-global")();
 
-const IconPatterns = require("../src/icon-patterns")(window);
+const IconPatterns = require("../src/icon-patterns")();
 
 const test = require("tape");
 const Helpers = IconPatterns.Helpers;
@@ -64,22 +64,68 @@ test("Helpers.Random.Positions(count, width, height) throws error if `count` is 
   t.plan(1);
   try {
     Helpers.Random.positions(0, 50, 100);
-  } catch(err) {
+  } catch (err) {
     t.equals(err.message, "Argument `count` should be greater than zero");
   }
+});
+
+test("Helpers.DOM.appendClasses(htmlElement, classes) appends classes to htmlElement", function(t) {
+  t.plan(1);
+  const element = document.createElement("div");
+  element.className = "foo bar";
+  Helpers.DOM.appendClasses(element, ["baz"]);
+  t.equals(element.className, "foo bar baz");
+});
+
+test("Helpers.DOM.appendClasses(htmlElement, classes) appends classes to htmlElement", function(t) {
+  t.plan(1);
+  const element = document.createElement("div");
+  element.className = "foo bar";
+  Helpers.DOM.appendClasses(element, ["baz"]);
+  t.equals(element.className, "foo bar baz");
+});
+
+test("Helpers.DOM.appendStyle(htmlElement, style) appends style to htmlElement", function(t) {
+  t.plan(2);
+  const element = document.createElement("div");
+  Helpers.DOM.appendStyle(element, {
+    "background": "red",
+    "width": "10px"
+  });
+  t.equals(element.style.background, "red");
+  t.equals(element.style.width, "10px");
+});
+
+test("Helpers.DOM.appendStyle(htmlElement, style) safely ignores invalid arguments", function(t) {
+  t.plan(1);
+  const element = document.createElement("div");
+  Helpers.DOM.appendStyle(element, null);
+  Helpers.DOM.appendStyle(null, {});
+  t.ok("No exception was thrown");
+});
+
+test("Helpers.DOM.generateElement(tag, classes, style) create an HTMLElement with the defined class names and style", function(t) {
+  t.plan(3);
+  const element = Helpers.DOM.generateElement("p", [
+    "foo", "bar"
+  ], {"width": "10px"});
+  t.equals(element.className, " foo bar");
+  t.equals(element.style.width, "10px");
+  t.equals(element.tagName, "P");
 });
 
 test("IconPatterns() throws error messages for invalid instantiations", function(t) {
   t.plan(2);
   try {
     new IconPatterns.PatternInstance();
-  } catch(err) {
-    t.equals(err.message, "Missing `target` jQuery instance");
+  } catch (err) {
+    t.equals(err.message, "Missing `target` HTMLElement");
   }
   try {
-    const $target = $("<div id='container'></div>");
-    new IconPatterns.PatternInstance($target);
-  } catch(err) {
+    const element = document.createElement("div");
+    element.id = "container";
+    new IconPatterns.PatternInstance(element);
+  } catch (err) {
     t.equals(err.message, "Missing `icons` configuration from config file");
   }
 });
@@ -96,16 +142,24 @@ test("IconPatterns() appends icons in DOM", function(t) {
    * @return {array}
    */
   const filterIconsWithClass = (icons, className) => {
-    return icons.filter((index) => $(icons[index]).find("i").hasClass(className)).map((index) => icons[index]);
+    return Object.entries(icons).filter(([idx, icon]) => {
+      return icon.getElementsByTagName("I")[0].className.indexOf(className) >= 0;
+    });
   };
   t.plan(6);
-  // console.log(dom.serialize());
-  const $container = $("<div id='container'></div>");
-  const $child1 = $("<div id='container__child__1' style='z-index:auto;'></div>");
-  const $child2 = $("<div id='container__child__2' style='z-index:2;'></div>");
-  $container.append($child1);
-  $container.append($child2);
-  const instance = new IconPatterns.PatternInstance($container, {
+  // Setup DOM layout
+  const container = document.createElement("div");
+  container.id = "container";
+  const child1 = document.createElement("div");
+  child1.id = "container__child__1";
+  child1.style["z-index"] = "auto";
+  const child2 = document.createElement("div");
+  child2.id = "container__child__2";
+  child2.style["z-index"] = "2";
+  container.appendChild(child1);
+  container.appendChild(child2);
+  // Initialize instance
+  new IconPatterns.PatternInstance(container, {
     color: "#FFFFFF",
     icons: {
       "ion-foo": {
@@ -117,18 +171,17 @@ test("IconPatterns() appends icons in DOM", function(t) {
         sizeVariation: [5, 20]
       }
     }
-  });
-  instance.draw();
-  const $icons = $container.find(".icon-patterns__overlay").children();
+  }).draw();
+  const icons = container.getElementsByClassName("icon-patterns__overlay")[0].childNodes;
   // Extract Icons
-  const iconsFoo = filterIconsWithClass($icons, "ion-foo");
-  const iconsBar = filterIconsWithClass($icons, "ion-bar");
+  const iconsFoo = filterIconsWithClass(icons, "ion-foo");
+  const iconsBar = filterIconsWithClass(icons, "ion-bar");
   // Assert icon counts
-  t.equals($icons.length, 25);
+  t.equals(icons.length, 25);
   t.equals(iconsFoo.length, 10);
   t.equals(iconsBar.length, 15);
   // Assert the the icon layer lays on top of the child elements
-  t.equals($container.find(".icon-patterns__overlay").css("z-index"), "0");
-  t.equals($child1.css("z-index"), "1");    // `auto` is transformed to 1
-  t.equals($child2.css("z-index"), "2");    // `2` remains `2`
+  t.equals(container.getElementsByClassName("icon-patterns__overlay")[0].style["z-index"], "0");
+  t.equals(child1.style["z-index"], "1");    // `auto` is transformed to 1
+  t.equals(child2.style["z-index"], "2");    // `2` remains `2`
 });

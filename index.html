@@ -226,16 +226,13 @@
           <p>
             Load the javascript assets before closing the <span class="font--bold">body</span> tag.
           </p>
-          <pre><code class="html">&lt;!-- jQuery import --&gt;
-&lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
-&lt;!-- IconPatterns import --&gt;
-&lt;script src="https://unpkg.com/icon-patterns/dist/icon-patterns.min.js" &gt;&lt;/script&gt;
+          <pre><code class="html">&lt;script src="https://unpkg.com/icon-patterns/dist/icon-patterns.min.js" &gt;&lt;/script&gt;
 </code></pre>
           <p class="section__title">
             Setup DOM
           </p>
-          <p>You can use any selectors to define your target via <a href="https://jquery.com/">jQuery</a>.</p>
-          <pre><code class="html">&lt;div id="my-container"&gt; We've created Icon Patterns &lt;/div&gt;</code></pre>
+          <p>You can use any selectors to define your target (You can use <a href="https://jquery.com/">jQuery</a> if you want).</p>
+          <pre><code class="html">&lt;div id="target"&gt; We've created Icon Patterns &lt;/div&gt;</code></pre>
           </h3>
           <p class="section__title">
             Configure positions and count
@@ -243,7 +240,7 @@
           <p>
             Include the name prefixes as described in the font icon set that you have imported.
           </p>
-          <pre><code class="js">$('#my-container').IconPatterns({
+          <pre><code class="js">new IconPatterns(document.getElementById('target'), {
   color: '#FFFFFF',
   icons: {
     'ion-ios-bell-outline': {
@@ -258,7 +255,7 @@
       count: 10,
       sizeVariation: [5, 35],
     },
-  }]
+  }
 }).draw();</code></pre>
         </div>
       </div>
@@ -293,29 +290,25 @@
       <p>Icon patterns are free and open-source. Feel free to use it!</p>
     </div>
   </div>
-  <!-- IconPatterns setup -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="./dist/icon-patterns.js" charset="utf-8"></script>
   <script>
-    $(document).ready(function() {
-      $('#container').IconPatterns({
-        color: '#FFFFFF',
-        icons: {
-          'ion-ios-bell-outline': {
-            count: 10,
-            sizeVariation: [10, 25],
-          },
-          'ion-ios-cloud-outline': {
-            count: 15,
-            sizeVariation: [5, 20],
-          },
-          'ion-ios-lightbulb-outline': {
-            count: 10,
-            sizeVariation: [5, 35],
-          },
-        }
-      }).draw();
-    });
+    new IconPatterns(document.getElementById('container'), {
+      color: '#FFFFFF',
+      icons: {
+        'ion-ios-bell-outline': {
+          count: 10,
+          sizeVariation: [10, 25],
+        },
+        'ion-ios-cloud-outline': {
+          count: 15,
+          sizeVariation: [5, 20],
+        },
+        'ion-ios-lightbulb-outline': {
+          count: 10,
+          sizeVariation: [5, 35],
+        },
+      }
+    }).draw();
   </script>
   <!-- Highlight.js setup -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
