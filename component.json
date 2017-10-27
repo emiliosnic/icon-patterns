@@ -4,9 +4,6 @@
   "description": "Include animated CSS icon patterns in your background",
   "homepage": "https://emiliosnic.github.io/icon-patterns",
   "main": [ "./dist/icon-patterns.js", "./dist/icon-patterns.css" ],
-  "dependencies": {
-    "jquery": ">= 3.0.x"
-  },
   "author": {
     "name": "emiliosnic",
   },
