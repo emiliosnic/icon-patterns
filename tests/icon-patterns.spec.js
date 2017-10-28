@@ -1,5 +1,3 @@
-// const {JSDOM} = require("jsdom");
-// const window = new JSDOM("<!DOCTYPE html></html>").window;
 require("jsdom-global")();
 
 const IconPatterns = require("../src/icon-patterns")();
